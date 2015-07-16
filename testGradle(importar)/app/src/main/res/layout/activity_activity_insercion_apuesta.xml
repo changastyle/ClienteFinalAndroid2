@@ -1,0 +1,260 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context="com.example.nicolas.testgradle.activities.ActivityInsercionApuesta"
+              android:orientation="vertical"
+              android:background="#6888A8">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.40"
+        android:gravity="center">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.10">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/tv1"
+                android:gravity="center"
+                android:text="@string/tv1Inicial"
+                android:background="#ffc2cfff"/>
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:id="@+id/scrollView"
+            android:layout_weight="0.5"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.33">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:id="@+id/but7"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+                        android:id="@+id/but8"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:id="@+id/but9"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.33">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:id="@+id/but4"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:id="@+id/but5"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+                        android:id="@+id/but6"
+                        android:layout_weight="0.33"
+                        android:background="@drawable/butonsLayout"
+                        android:layout_margin="2dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.33">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:id="@+id/but1"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:id="@+id/but2"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:id="@+id/but3"
+                        android:layout_weight="0.33"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.33">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:text="0"
+                        android:id="@+id/but0"
+                        android:layout_weight="0.4"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="borrar"
+                        android:id="@+id/butBorrar"
+                        android:layout_weight="0.5"
+                        android:background="#ffc2cfff"
+                        android:layout_margin="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.10">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/tv2"
+                android:gravity="center"
+                android:background="#ffc2cfff"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:baselineAligned="false"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="-"
+                android:id="@+id/butMenos"
+                android:layout_weight="0.33"
+                android:textStyle="bold"
+                android:background="#ffc2cfff"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="$1.00"
+                android:id="@+id/tvPrecio"
+                android:layout_weight="0.33"
+                android:gravity="center"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="+"
+                android:id="@+id/butMas"
+                android:layout_weight="0.33"
+                android:textStyle="bold"
+                android:background="#ffc2cfff"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.10">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Cancel"
+                android:id="@+id/butCancel"
+                android:layout_weight="0.5"
+                android:background="#ffb92608"
+                android:hint="Cancela Jugada"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:text="Ok"
+                android:id="@+id/butOK"
+                android:layout_weight="0.5"
+                android:background="#ff70c751"
+                android:hint="Acepta Jugada"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
