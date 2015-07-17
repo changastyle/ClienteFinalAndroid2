@@ -1,0 +1,4 @@
+<config>
+	<direccionIP>localhost</direccionIP>
+	<port>9999</port>
+</config>

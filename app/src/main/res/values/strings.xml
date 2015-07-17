@@ -12,4 +12,6 @@
     <string name="title_activity_activity_insercion_apuesta">ActivityInsercionApuesta</string>
     <string name="tv1Inicial">Numero Apostado</string>
     <string name="title_activity_tabed">TabedActivity</string>
+    <string name="direccionIP">localhost</string>
+    <string name="puerto">9999</string>
 </resources>

@@ -5,8 +5,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import cliente.*;
+import serializable.ParametrosEncapsuladosParaClientes;
 
 import com.example.nicolas.clientefinalandroid2.R;
+
+import org.apache.http.client.ClientProtocolException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -22,7 +26,17 @@ public class MainActivity extends ActionBarActivity {
             {
                 try
                 {
-                    Thread.sleep(2000);
+                    System.out.println("VOY A PEDIR DATOS.");
+                    Cliente c = new Cliente("10.0.2.2", 9999);
+                    c.start();
+                    c.join();
+                    c.enviar(1);
+                    ParametrosEncapsuladosParaClientes pepc = (ParametrosEncapsuladosParaClientes) c.recibir();
+                    System.out.println(pepc.toString());
+                    System.out.println("TERMINE DE PEDIR DATOS.");
+
+
+                    //Thread.sleep(2000);
                     Intent i = new Intent(MainActivity.this, TabedActivity.class);
                     startActivity(i);
                 }
