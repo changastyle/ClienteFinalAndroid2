@@ -1,5 +1,8 @@
 package cliente;
 
+import android.app.Application;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -9,50 +12,67 @@ import serializable.ConjuntoJugadas;
 import serializable.Jugada;
 import serializable.*;
 
-public class ManejadorCliente
+public class ManejadorCliente  extends Application implements Serializable
 {   
     //private final String direccionIPServer = XMLAPI.XMLHandler.leer("config.xml","direccionIP");
-    private final String direccionIPServer = "localhost";
+    //private final static String direccionIPServer = "10.0.2.2";
+    private final static String direccionIPServer = "192.168.5.189";
     //private final int puertoServer = XMLAPI.XMLHandler.leerInt("config.xml","port");
-    private final int puertoServer = 9999;
-    private Cliente cliente;
-    private ConjuntoJugadas conjuntoJugadas;
-    private ConjuntoDevuelto conjuntoDevuelto;
-    private ParametrosEncapsuladosParaClientes pepc;
-    
-    public ManejadorCliente()
-    {
-        System.out.println("DIRECCION IP DEL SERVER: " + direccionIPServer);
-        System.out.println("PORT DEL SERVER: " +  puertoServer);
+    private final static int puertoServer = 9999;
+    private static Cliente cliente;
 
-        //pepc = pedirParametrosAlServer();
-        
-        //VentanaCliente ventanaCliente = new VentanaCliente(this);
-        
-        //enviarJugadasTest(); 
-    }
-    public void enviarJugadasTest()
+    private static ParametrosEncapsuladosParaClientes pepc;
+    private static ConjuntoJugadas conjuntoJugadasActuales = new ConjuntoJugadas();
+    private static ConjuntoDevuelto conjuntoDevuelto;
+
+
+    public static void enviarJugadasTest()
     {
         //A MODO DE PRUEBA, NO ANDARR CARGANDO COSAS:
-        conjuntoJugadas = new ConjuntoJugadas();
-            Jugada j1 = new Jugada("1",50); conjuntoJugadas.agregarJugada(j1);
-            Jugada j2 = new Jugada("2",50); conjuntoJugadas.agregarJugada(j2);
-            Jugada j3 = new Jugada("3",50); conjuntoJugadas.agregarJugada(j3);
-            Jugada j4 = new Jugada("4",50); conjuntoJugadas.agregarJugada(j4);
-            Jugada j5 = new Jugada("5",50); conjuntoJugadas.agregarJugada(j5);
+        conjuntoJugadasActuales = new ConjuntoJugadas();
+            Jugada j1 = new Jugada("1",50); conjuntoJugadasActuales.agregarJugada(j1,1);
+            Jugada j2 = new Jugada("2",50); conjuntoJugadasActuales.agregarJugada(j2,2);
+            Jugada j3 = new Jugada("3",50); conjuntoJugadasActuales.agregarJugada(j3,3);
+            Jugada j4 = new Jugada("4",50); conjuntoJugadasActuales.agregarJugada(j4,4);
+            Jugada j5 = new Jugada("5",50); conjuntoJugadasActuales.agregarJugada(j5,5);
         conjuntoDevuelto = new ConjuntoDevuelto();
-        conjuntoDevuelto = enviarConjuntoJugadasAlServer(conjuntoJugadas);
+        conjuntoDevuelto = enviarConjuntoJugadasAlServer(conjuntoJugadasActuales);
         
         System.out.println("EXTRACTO:\n" + conjuntoDevuelto.toString());
     }
-    public void enviarJugadas(ConjuntoJugadas conjuntoJugadas)
+    public static ConjuntoDevuelto enviarConjuntoJugadasAlServer()
     {
-        conjuntoDevuelto = new ConjuntoDevuelto();
-        conjuntoDevuelto = enviarConjuntoJugadasAlServer(conjuntoJugadas);
-        
-        System.out.println("EXTRACTO:\n" + conjuntoDevuelto.toString());
+        ConjuntoDevuelto conjuntoDevuelto = new ConjuntoDevuelto();
+
+        try
+        {
+            //ABRO CONEXION CON EL SERVER:
+            cliente = new Cliente(direccionIPServer, puertoServer);
+            cliente.start();
+
+            //ENVIO BIT DE ESTADO DE LA CONEXION:
+            cliente.enviar(2);//ESTADO DE LA CONEXION.
+            cliente.join();
+
+            //ENVIO LAS JUGADAS HECHAS:
+            cliente.enviar(conjuntoJugadasActuales);
+            cliente.join();
+
+            //RECIBO EL RESULTADO DE LAS MISMAS:
+            conjuntoDevuelto = (ConjuntoDevuelto) cliente.recibir();
+            cliente.join();
+
+            //CIERRO CONEXION CON EL SERVER:
+            cliente.cerrar();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return conjuntoDevuelto;
     }
-    public ConjuntoDevuelto enviarConjuntoJugadasAlServer(ConjuntoJugadas conjuntoJugadas)
+    public static ConjuntoDevuelto enviarConjuntoJugadasAlServer(ConjuntoJugadas conjuntoJugadas)
     {
         ConjuntoDevuelto conjuntoDevuelto = new ConjuntoDevuelto();
         
@@ -84,9 +104,8 @@ public class ManejadorCliente
         }
         return conjuntoDevuelto;
     }
-    public ParametrosEncapsuladosParaClientes pedirParametrosAlServer()
+    public static ParametrosEncapsuladosParaClientes pedirParametrosAlServer()
     {
-        ParametrosEncapsuladosParaClientes pepcAUX = new ParametrosEncapsuladosParaClientes();
         try
         {
             ///ABRO CONEXION CON EL SERVER Y ESTABLESCO CANALES I/O:
@@ -99,12 +118,12 @@ public class ManejadorCliente
             cliente.join();
             
             //RECIBO LOS PARAMETROS DEL SERVER:
-            pepcAUX = (ParametrosEncapsuladosParaClientes) cliente.recibir();
+            pepc = (ParametrosEncapsuladosParaClientes) cliente.recibir();
             cliente.join();
             
-            if (pepcAUX != null)
+            if (pepc != null)
             {
-                System.out.println("" +  pepcAUX.toString());
+                System.out.println("" +  pepc.toString());
             }
             
             //CIERRO LA CONEXION CON EL SERVER:
@@ -115,44 +134,46 @@ public class ManejadorCliente
             System.out.println("ERROR: NO SE PUDO PEDIR PARAMETROS AL SERVIDOR.");
             e.printStackTrace();
         }
-        return pepcAUX;
-    }
-    public void agregarJugadaAlConjunto(Jugada jugada)
-    {
-        this.conjuntoJugadas.agregarJugada(jugada);
-    }
-    
-    /*GYS*/
-    public Cliente getCliente() 
-    {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) 
-    {
-        this.cliente = cliente;
-    }
-    public ConjuntoJugadas getConjuntoJugadas() 
-    {
-        return conjuntoJugadas;
-    }
-    public void setConjuntoJugadas(ConjuntoJugadas conjuntoJugadas)
-    {
-        this.conjuntoJugadas = conjuntoJugadas;
-    }
-    public ConjuntoDevuelto getConjuntoDevuelto() 
-    {
-        return conjuntoDevuelto;
-    }
-    public void setConjuntoDevuelto(ConjuntoDevuelto conjuntoDevuelto) 
-    {
-        this.conjuntoDevuelto = conjuntoDevuelto;
-    }
-    public ParametrosEncapsuladosParaClientes getPepc() 
-    {
         return pepc;
     }
-    public void setPepc(ParametrosEncapsuladosParaClientes pepc) 
+    public static void agregarJugadaAlConjunto(Jugada jugada,int posicion)
     {
-        this.pepc = pepc;
-    }  
+        conjuntoJugadasActuales.agregarJugada(jugada,posicion);
+    }
+
+
+
+
+
+    /*GYS*/
+    public static int getPuertoServer() {
+        return puertoServer;
+    }
+    public static Cliente getCliente() {
+        return cliente;
+    }
+    public static void setCliente(Cliente cliente) {
+        ManejadorCliente.cliente = cliente;
+    }
+    public static ConjuntoDevuelto getConjuntoDevuelto() {
+        return conjuntoDevuelto;
+    }
+    public static void setConjuntoDevuelto(ConjuntoDevuelto conjuntoDevuelto) {
+        ManejadorCliente.conjuntoDevuelto = conjuntoDevuelto;
+    }
+    public static ParametrosEncapsuladosParaClientes getPepc() {
+        return pepc;
+    }
+
+    public static void setPepc(ParametrosEncapsuladosParaClientes pepc) {
+        ManejadorCliente.pepc = pepc;
+    }
+
+    public static ConjuntoJugadas getConjuntoJugadasActuales() {
+        return conjuntoJugadasActuales;
+    }
+
+    public static void setConjuntoJugadasActuales(ConjuntoJugadas conjuntoJugadasActuales) {
+        ManejadorCliente.conjuntoJugadasActuales = conjuntoJugadasActuales;
+    }
 }

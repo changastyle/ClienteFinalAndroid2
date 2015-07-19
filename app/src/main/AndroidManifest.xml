@@ -4,14 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".Activities.ActivityCargaBarra"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,11 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.TabedActivity"
+            android:name=".Activities.VentanaContabulaciones"
             android:label="@string/title_activity_tabed" >
         </activity>
         <activity
-            android:name=".Activities.Tabs.Tab1"
+            android:name=".Activities.Tabs.ActivityCargaJugada"
             android:label="@string/title_activity_tab1" >
         </activity>
         <activity
@@ -34,6 +33,18 @@
         <activity
             android:name=".Activities.Tabs.Tab3"
             android:label="@string/title_activity_tab3" >
+        </activity>
+        <activity
+            android:name=".Activities.ErrorParametersActivity"
+            android:label="@string/title_activity_error_parameters" >
+        </activity>
+        <activity
+            android:name=".Activities.Tabs.Tab1"
+            android:label="@string/title_activity_tab4" >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityResultados"
+            android:label="@string/title_activity_activity_resultados" >
         </activity>
     </application>
 

@@ -1,0 +1,44 @@
+package Threads;
+
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.example.nicolas.clientefinalandroid2.Activities.ActivityCargaBarra;
+
+/**
+ * Created by nicolas on 16/07/15.
+ */
+public class ThreadBarraStatusWelcomeActivity extends Thread
+{
+    int progreso = 0;
+    private ActivityCargaBarra activityWelcome;
+    private ProgressBar progressBar;
+
+    public ThreadBarraStatusWelcomeActivity(ActivityCargaBarra activityWelcome)
+    {
+        progressBar = activityWelcome.getBarra();
+        this.activityWelcome = activityWelcome;
+    }
+    public void run()
+    {
+        try
+        {
+            while(true)
+            {
+                progreso += 10;
+                progressBar.setProgress(progreso);
+                Thread.sleep(250);
+
+                if(progreso == 100)
+                {
+                    activityWelcome.pasarActivityPrincipal();
+                    this.interrupt();
+                    break;
+                }
+            }
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}

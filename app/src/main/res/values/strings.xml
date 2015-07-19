@@ -8,10 +8,13 @@
     <string name="title_activity_tab3">Escanear el codigo QR</string>
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="welcomemsg">Welcome</string>
+    <string name="welcomemsg">Bienvenido</string>
     <string name="title_activity_activity_insercion_apuesta">ActivityInsercionApuesta</string>
     <string name="tv1Inicial">Numero Apostado</string>
     <string name="title_activity_tabed">TabedActivity</string>
     <string name="direccionIP">localhost</string>
     <string name="puerto">9999</string>
+    <string name="title_activity_error_parameters">ErrorParametersActivity</string>
+    <string name="title_activity_tab4">Tab4</string>
+    <string name="title_activity_activity_resultados">ActivityResultados</string>
 </resources>
