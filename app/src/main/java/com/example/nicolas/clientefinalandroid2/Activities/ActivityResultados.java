@@ -54,13 +54,21 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
 
         ConjuntoDevuelto conjuntoDevuelto = ManejadorCliente.getConjuntoDevuelto();
 
-        System.out.println("NUMEROS SORTEADOS:" + conjuntoDevuelto.toString());
-        textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) + ",00");
+
+        if(conjuntoDevuelto.dineroTotalGanado() == 0)
+        {
+            textViewResultadosDinero.setText("No Ganador");
+        }
+        else
+        {
+            textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) + ",00");
+        }
+
 
         int contador = 0;
         for(TextView textViewActual : arrTextsViewsDeResultados)
         {
-            textViewActual.setText("Numero: " + conjuntoDevuelto.getArrNumerosSorteados().get(contador));
+            textViewActual.setText(conjuntoDevuelto.getArrNumerosSorteados().get(contador));
             contador++;
         }
     }

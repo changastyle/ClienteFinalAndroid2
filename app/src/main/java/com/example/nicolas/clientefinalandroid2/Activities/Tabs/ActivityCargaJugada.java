@@ -22,9 +22,8 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
 
     ArrayList<Button> arrBotones;
     Button but0,but1,but2,but3,but4,but5,but6,but7,but8,but9;
-    Button butMas,butMenos,butOk,butCancel,butBorrar;
+    Button butMas,butMenos,butOk,butCancel,butBorrar, botonCargarOtra;
     TextView tv1,tv2,tvPrecio;
-    int dineroApostado;
     int indiceJugadaActual;
     private int importeMinimo;
     private int importeMaximoPorApuesta;
@@ -52,17 +51,18 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         importeMaximoPorApuesta = Integer.parseInt(pepc.getParametro("importeMaximoPorApuesta").getValor());
         importePorDefault = Integer.parseInt(pepc.getParametro("importePorDefault").getValor());
 
-        dineroApostado = 1;
+        //CREO EL MODEL PARA EL SPINER:
         modelSpinner = new ArrayList<String>();
         for(int i = importeMinimo ; i <= importeMaximoPorApuesta ; i++)
         {
             String aux = "$" + i + ",00";
             modelSpinner.add(aux);
         }
-        posicionSpinner = 0;
+        posicionSpinner = (importePorDefault -1);
 
-
-
+        tv1 = (TextView) findViewById(R.id.tv1);
+        tv2 = (TextView) findViewById(R.id.tv2);
+        tvPrecio = (TextView) findViewById(R.id.tvPrecio);
 
         arrBotones = new ArrayList<Button>();
         but0 = (Button) findViewById(R.id.but0);arrBotones.add(but0);
@@ -81,10 +81,28 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         butOk = (Button)findViewById(R.id.butOK);butOk.setOnClickListener(this);
         butCancel = (Button)findViewById(R.id.butCancel);butCancel.setOnClickListener(this);
         butBorrar = (Button)findViewById(R.id.butBorrar);butBorrar.setOnClickListener(this);;
+        botonCargarOtra = (Button) findViewById(R.id.botonCargarOtra); botonCargarOtra.setOnClickListener(this);
 
-        tv1 = (TextView) findViewById(R.id.tv1);
-        tv2 = (TextView) findViewById(R.id.tv2);
-        tvPrecio = (TextView) findViewById(R.id.tvPrecio);
+        //SI TENIA UNA JUGADA CARGADA; ENTONCES LA LEVANTO GRAFICAMENTE:
+        Jugada jugadaProvisoria = ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas()[indiceJugadaActual];
+        if(!jugadaProvisoria.estoyVacia())
+        {
+            tv1.setText(jugadaProvisoria.getNumero());
+            posicionSpinner =jugadaProvisoria.getDineroApostado();
+            dameSuenio();
+
+        }
+
+        //CAMBIOS EN BOTON PASAR SIGUIENTE JUGADA:
+        System.out.println("INDICE JUGADA ACTUAL:" + indiceJugadaActual);
+        if(indiceJugadaActual < (ManejadorCliente.getMaximoJugadas() -1))
+        {
+            botonCargarOtra.setText("Cargar " + (indiceJugadaActual+2) + "/" +  ManejadorCliente.getMaximoJugadas() );
+        }
+        else
+        {
+            botonCargarOtra.setEnabled(false);
+        }
 
         tvPrecio.setText(modelSpinner.get(posicionSpinner));
 
@@ -119,7 +137,15 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
                 {
                     Toast.makeText(this,"No se puede un numero mayor a 1000",Toast.LENGTH_SHORT).show();
                 }
-                dameSuenio();
+                if(tv1.getText().toString().length() > 1)
+                {
+                    dameSuenio();
+                }
+                else
+                {
+                    tv2.setText(R.string.tv2Inicial);
+                }
+
             }
         }
 
@@ -141,32 +167,55 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         }
         if(b == butCancel)
         {
-            posicionSpinner = 0;
-            tv1.setText(modelSpinner.get(posicionSpinner));
+            posicionSpinner = (importePorDefault - 1);
+            //tvPrecio.setText(modelSpinner.get(importePorDefault));
+            tv1.setText(R.string.tv1Inicial);
+            tv2.setText(R.string.tv2Inicial);
 
         }
         if(b == butOk)
         {
-            String msg = "";
-            if(tv1.getText().toString().equalsIgnoreCase("Numero Apostado"))
+            Intent intentVuelveAlaTabedActivity = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+            intentVuelveAlaTabedActivity.putExtra("tab?",1);
+            startActivity(intentVuelveAlaTabedActivity);
+            if(tv1.getText().toString().equalsIgnoreCase(getResources().getString(R.string.tv1Inicial)))
             {
-                msg ="No apostaste a un numero valido..";
+                Jugada jugada =  new Jugada();
+                ManejadorCliente.agregarJugadaAlConjunto(jugada,this.indiceJugadaActual);
+
+                startActivity(intentVuelveAlaTabedActivity);
             }
             else
             {
-                msg ="Jugada valida!";
-
                 String numeroApostado = tv1.getText().toString();
                 int dineroApostado = posicionSpinner + 1 ;
                 Jugada jugada =  new Jugada(numeroApostado,dineroApostado);
 
+                ManejadorCliente.agregarJugadaAlConjunto(jugada, this.indiceJugadaActual);
+
+                startActivity(intentVuelveAlaTabedActivity);
+            }
+        }
+        if(b == botonCargarOtra)
+        {
+            Intent i = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.Tabs.ActivityCargaJugada.class);
+            i.putExtra("jugada", (indiceJugadaActual + 1));
+
+            if(tv1.getText().toString().equalsIgnoreCase(getResources().getString(R.string.tv1Inicial)))
+            {
+                Jugada jugada =  new Jugada();
                 ManejadorCliente.agregarJugadaAlConjunto(jugada,this.indiceJugadaActual);
-
-
-                Intent i = new Intent(this,Tab1.class);
                 startActivity(i);
             }
-            Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+            else
+            {
+                String numeroApostado = tv1.getText().toString();
+                int dineroApostado = posicionSpinner + 1 ;
+                Jugada jugada =  new Jugada(numeroApostado,dineroApostado);
+                ManejadorCliente.agregarJugadaAlConjunto(jugada, this.indiceJugadaActual);
+
+                startActivity(i);
+            }
         }
         if(b == butBorrar)
         {
@@ -177,8 +226,15 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
             }
             else
             {
-                tv1.setText(tv1.getText().toString().substring(0,tv1.getText().toString().length() -1 ));
-                dameSuenio();
+                tv1.setText(tv1.getText().toString().substring(0, tv1.getText().toString().length() - 1));
+                if(tv1.getText().length() > 1)
+                {
+                    dameSuenio();
+                }
+                else
+                {
+                    tv2.setText("");
+                }
             }
         }
 

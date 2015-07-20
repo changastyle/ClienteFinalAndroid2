@@ -40,16 +40,43 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         agregarListeners();
 
 
-
-        System.out.println("LENGTH" + ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas().length )  ;
-
+        //SETEO EL TEXTO DE LOS BOTONES:
         int contador = 0;
         for(Jugada jugada : ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas())
         {
-            if(jugada != null)
+            if(! jugada.estoyVacia())
             {
-                System.out.println("J" + contador + ": " + jugada.toString());
                 arrBotones.get(contador).setText(jugada.getNumero() + " x $" + jugada.getDineroApostado() + ".00");
+            }
+            else
+            {
+                String stringParseoContador = "";
+
+                switch(contador)
+                {
+                    case 0:
+                        stringParseoContador = "Primera";
+                        break;
+                    case 1:
+                        stringParseoContador = "Segunda";
+                        break;
+                    case 2:
+                        stringParseoContador = "Tercera";
+                        break;
+                    case 3:
+                        stringParseoContador = "Cuarta";
+                        break;
+                    case 4:
+                        stringParseoContador = "Quinta";
+                        break;
+                    case 5:
+                        stringParseoContador = "Sexta";
+                        break;
+                    default:
+                        stringParseoContador = "xxx";
+                        break;
+                }
+                arrBotones.get(contador).setText( stringParseoContador + " Jugada " + jugada.getNumero() );
             }
             contador++;
         }

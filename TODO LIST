@@ -2,3 +2,19 @@
 2)MOSTRAR UNA VISTA GENERAL DE LAS JUGADAS ACTUALES QUE TIENE EL MANEJADOR.X
 3)INSERTAR JUGADAS EN EL ARRAY DE JUGADAS ACTUALES DEL MANEJADOR.X
 4)MOSTRAR LA RESPUESTA PROCESADA DE LAS JUGADAS EN UNA VIEW. Y MOSTRAR UNICAMENTE NUMEROS SORTEADOS.
+
+
+5)Corregir errores de no conexion.X
+6)Agregar lectura de tarjetas.
+7)Reparar bug ventana carga de jugadas con boton borrar todo.X
+8)NO permitir cargar una jugada x-$1.00.X
+9)Devolver un float , no int.
+10)el sueño a partir de 2 digitos.X
+11)Pasar de activity cargadora a activity cargadora y la ultima posibilidad de enviar directamente, no seguir pasando.
+12) poner monto dinero defuault.X
+13) Volver a la tabed activity no a la activity de apuesta.
+14) corregir los resultados, en dos columnas.
+15) Total ganado abajo de las columnas.
+16) si el total ganado == 0,entoces decir: NO GANADOR.
+17) Texto TOp Resultado =  SORTEO.
+18)BLOQUEAR EL PORTRAIT MODE.

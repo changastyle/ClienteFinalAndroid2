@@ -17,4 +17,12 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffffffff" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Reintentar Conexion"
+        android:id="@+id/botonReintentarConexion"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

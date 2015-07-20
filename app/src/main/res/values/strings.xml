@@ -17,4 +17,6 @@
     <string name="title_activity_error_parameters">Sin Conexion</string>
     <string name="title_activity_tab4">Apuesta</string>
     <string name="title_activity_activity_resultados">Resultados:</string>
+    <string name="tv2Inicial"></string>
+    <string name="coEncabezadoActivityResultados">SORTEO</string>
 </resources>

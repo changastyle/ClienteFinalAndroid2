@@ -25,6 +25,7 @@ public class ManejadorCliente  extends Application implements Serializable
     private static ConjuntoJugadas conjuntoJugadasActuales = new ConjuntoJugadas();
     private static ConjuntoDevuelto conjuntoDevuelto;
     private static Tarjeta tarjetaActual;
+    private static int maximoJugadas = 5;
 
 
     public static void enviarJugadasTest()
@@ -172,16 +173,33 @@ public class ManejadorCliente  extends Application implements Serializable
     public static ParametrosEncapsuladosParaClientes getPepc() {
         return pepc;
     }
-
-    public static void setPepc(ParametrosEncapsuladosParaClientes pepc) {
+    public static void setPepc(ParametrosEncapsuladosParaClientes pepc){
         ManejadorCliente.pepc = pepc;
     }
-
     public static ConjuntoJugadas getConjuntoJugadasActuales() {
         return conjuntoJugadasActuales;
     }
-
     public static void setConjuntoJugadasActuales(ConjuntoJugadas conjuntoJugadasActuales) {
         ManejadorCliente.conjuntoJugadasActuales = conjuntoJugadasActuales;
+    }
+    public static String getDireccionIPServer()
+    {
+        return direccionIPServer;
+    }
+    public static Tarjeta getTarjetaActual()
+    {
+        return tarjetaActual;
+    }
+    public static void setTarjetaActual(Tarjeta tarjetaActual)
+    {
+        ManejadorCliente.tarjetaActual = tarjetaActual;
+    }
+    public static int getMaximoJugadas()
+    {
+        return maximoJugadas;
+    }
+    public static void setMaximoJugadas(int maximoJugadas)
+    {
+        ManejadorCliente.maximoJugadas = maximoJugadas;
     }
 }

@@ -28,36 +28,41 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But1"
-                android:text="Cargar 1er Jugada"
-                android:layout_margin="4dp" />
+                android:text="Cargar Primer Jugada"
+                android:layout_margin="4dp"
+                android:background="#ffffb140" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But2"
-                android:text="Cargar 2da Jugada"
-                android:layout_margin="4dp" />
+                android:text="Cargar segunda Jugada"
+                android:layout_margin="4dp"
+                android:background="#ffffb140" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But3"
-                android:text="Cargar 3era Jugada"
-                android:layout_margin="4dp" />
+                android:text="Cargar Tercera Jugada"
+                android:layout_margin="4dp"
+                android:background="#ffffb140" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But4"
-                android:text="Cargar 4ta Jugada"
-                android:layout_margin="4dp" />
+                android:text="Cargar Cuarta Jugada"
+                android:layout_margin="4dp"
+                android:background="#ffffb140" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But5"
-                android:text="Cargar 5ta Jugada"
-                android:layout_margin="4dp" />
+                android:text="Cargar Quinta Jugada"
+                android:layout_margin="4dp"
+                android:background="#ffffb140" />
         </LinearLayout>
     </ScrollView>
 
@@ -78,5 +83,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="#ff8ba8ff" />
+        android:background="#ff8ba8ff"
+        android:textColor="#ffffffff" />
 </RelativeLayout>
