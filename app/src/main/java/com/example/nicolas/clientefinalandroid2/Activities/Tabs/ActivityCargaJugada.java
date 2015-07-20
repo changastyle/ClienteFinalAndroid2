@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import cliente.ManejadorCliente;
 import serializable.Jugada;
+import serializable.ParametrosEncapsuladosParaClientes;
 
 public class ActivityCargaJugada extends ActionBarActivity implements View.OnClickListener {
 
@@ -23,8 +24,14 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
     Button but0,but1,but2,but3,but4,but5,but6,but7,but8,but9;
     Button butMas,butMenos,butOk,butCancel,butBorrar;
     TextView tv1,tv2,tvPrecio;
-    int precio;
+    int dineroApostado;
     int indiceJugadaActual;
+    private int importeMinimo;
+    private int importeMaximoPorApuesta;
+    private int importePorDefault;
+    private int numeroMaximoParaSorteo;
+    private ArrayList<String> modelSpinner;
+    private int posicionSpinner;
 
 
     @Override
@@ -39,9 +46,23 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         //SETEO EL TITULO:
         this.setTitle("Jugada " + (indiceJugadaActual + 1) + " de 5");
 
+        //RECIBO LOS PARAMETROS DEL CONTROLLER:
+        ParametrosEncapsuladosParaClientes pepc = ManejadorCliente.getPepc();
+        importeMinimo = Integer.parseInt(pepc.getParametro("importeMinimoPorApuesta").getValor());
+        importeMaximoPorApuesta = Integer.parseInt(pepc.getParametro("importeMaximoPorApuesta").getValor());
+        importePorDefault = Integer.parseInt(pepc.getParametro("importePorDefault").getValor());
+
+        dineroApostado = 1;
+        modelSpinner = new ArrayList<String>();
+        for(int i = importeMinimo ; i <= importeMaximoPorApuesta ; i++)
+        {
+            String aux = "$" + i + ",00";
+            modelSpinner.add(aux);
+        }
+        posicionSpinner = 0;
 
 
-        precio = 1;
+
 
         arrBotones = new ArrayList<Button>();
         but0 = (Button) findViewById(R.id.but0);arrBotones.add(but0);
@@ -65,6 +86,8 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         tv2 = (TextView) findViewById(R.id.tv2);
         tvPrecio = (TextView) findViewById(R.id.tvPrecio);
 
+        tvPrecio.setText(modelSpinner.get(posicionSpinner));
+
         agregarListeners();
     }
     private void agregarListeners()
@@ -74,29 +97,6 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
             b.setOnClickListener(this);
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_tab1, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public void onClick(View v)
     {
@@ -125,22 +125,24 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
 
         if(b == butMas)
         {
-            if(precio < 10)
+            System.out.println("posicionSpinner:" + posicionSpinner + ", importeMaximoPorApuesta: " + importeMaximoPorApuesta);
+            if(posicionSpinner < (importeMaximoPorApuesta -1))
             {
-                precio ++;
+                posicionSpinner++;
             }
         }
         if(b == butMenos)
         {
-            if(precio > 1)
+            System.out.println("posicionSpinner:" + posicionSpinner + ", importeMaximoPorApuesta: " + importeMaximoPorApuesta);
+            if(posicionSpinner > (importeMinimo-1))
             {
-                precio --;
+                posicionSpinner--;
             }
         }
         if(b == butCancel)
         {
-            precio = 1;
-            tv1.setText(R.string.tv1Inicial);
+            posicionSpinner = 0;
+            tv1.setText(modelSpinner.get(posicionSpinner));
 
         }
         if(b == butOk)
@@ -155,7 +157,7 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
                 msg ="Jugada valida!";
 
                 String numeroApostado = tv1.getText().toString();
-                int dineroApostado = 5;
+                int dineroApostado = posicionSpinner + 1 ;
                 Jugada jugada =  new Jugada(numeroApostado,dineroApostado);
 
                 ManejadorCliente.agregarJugadaAlConjunto(jugada,this.indiceJugadaActual);
@@ -179,14 +181,16 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
                 dameSuenio();
             }
         }
-        tvPrecio.setText("$" + precio + ".00");
+
+        //CAMBIO EL TEXTO DE PRECIO:
+        tvPrecio.setText(modelSpinner.get(posicionSpinner));
     }
     private void dameSuenio()
     {
 
         String strNumeroActual = tv1.getText().toString();
 
-        if(strNumeroActual.length()>2)
+        if(strNumeroActual.length() > 2)
         {
             strNumeroActual = strNumeroActual.substring(1, 3);
             //System.out.println("STRNUMEROACUTIAL:" + strNumeroActual);
@@ -197,5 +201,29 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
                 "Desgracia" ,  "Sangre" , "Pescado" , "La fiesta" , "La mujer", "El loco",  "Mariposa" , "Caballo" ,  "Gallina" , "La misa" ,  "El peine", "El cerro" ,  "San Pedro" , "Santa Rosa"  , "La luz" , "Dinero" , "Cristo" ,"Cabeza", "Pajarito", "Manteca" ,  "Dentista" ,  "Aceite" ,  "Lluvia" , "Cura" ,  "Cucho", "Zapatilla" , "Balcón" , "La cárcel" ,  "El vino" , "Tomates", "Muerto", "Muerto habla" , "La carne" , "El pan", "Serrucho" ,"Madre" ,"El barco" ,"La vaca", "Los gallegos", "La caída","Jorabajo" , "Ahogado", "Planta" , "Virgen" , "Escopeta" , "Inundacion", "Casamiento" , "Llanto", "Cazador" , "Lombrices" , "Víbora" ,"Sobrinos", "Vicios" , "Muerto sueño", "Excrementos", "Sorpresa", "Hospital" ,"Negros" , "Payaso",  "Llamas" ,"Las piernas", "Ramera" , "Ladrón" , "La bocha" , "Flores" , "Pelea" ,"Mal tiempo", "Iglesia", "Linterna", "Humo", "Piojos", "El Papa" ,"La rata" , "El miedo" , "Excusado", "Médico", "Enamorado" , "Cementerio", "Anteojos", "Marido", "La mesa","Lavandera","Hermanos" };
 
         tv2.setText(String.valueOf(arrSuenios[numeroActual]));
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_tab1, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

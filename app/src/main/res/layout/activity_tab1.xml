@@ -9,61 +9,74 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView3" >
+        android:id="@+id/scrollView3"
+        android:layout_below="@+id/botonTarjeta"
+        android:layout_above="@+id/botonEnviarJugadas"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:id="@+id/textView2"
-                android:gravity="center"
-                android:text="No hay tarjeta seleccionada aun." />
-
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But1"
-                android:text="Cargar 1er Jugada" />
+                android:text="Cargar 1er Jugada"
+                android:layout_margin="4dp" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But2"
-                android:text="Cargar 2da Jugada" />
+                android:text="Cargar 2da Jugada"
+                android:layout_margin="4dp" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But3"
-                android:text="Cargar 3era Jugada" />
+                android:text="Cargar 3era Jugada"
+                android:layout_margin="4dp" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But4"
-                android:text="Cargar 4ta Jugada" />
+                android:text="Cargar 4ta Jugada"
+                android:layout_margin="4dp" />
 
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/Tab4But5"
-                android:text="Cargar 5ta Jugada" />
+                android:text="Cargar 5ta Jugada"
+                android:layout_margin="4dp" />
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="No hay Tarjeta vinculada!"
+        android:id="@+id/botonTarjeta"
+        android:background="#ffff4e45" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:text="Enviar Conjunto"
-        android:id="@+id/Tab4ButOK"
+        android:id="@+id/botonEnviarJugadas"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="#ff8ba8ff" />
 </RelativeLayout>

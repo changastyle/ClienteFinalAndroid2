@@ -27,6 +27,8 @@ public class VentanaContabulaciones extends TabActivity {
         setContentView(R.layout.ventana_con_tabulaciones);
 
         Intent intentRecibido = getIntent();
+        int tabALaQueTengoQueIrAlIniciar = (Integer) intentRecibido.getSerializableExtra("tab?");
+        tabALaQueTengoQueIrAlIniciar = tabALaQueTengoQueIrAlIniciar -1 ;
 
         tabHost = this.getTabHost();
         arrPestañas = new ArrayList<TabHost.TabSpec>();
@@ -55,6 +57,7 @@ public class VentanaContabulaciones extends TabActivity {
         arrPestañas.add(tab3);
         this.tabHost.addTab(tab3);
 
+        this.getCurrentTabHost().setCurrentTab(tabALaQueTengoQueIrAlIniciar);
     }
 
     @Override
@@ -79,5 +82,9 @@ public class VentanaContabulaciones extends TabActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public TabHost getCurrentTabHost()
+    {
+        return this.tabHost;
     }
 }

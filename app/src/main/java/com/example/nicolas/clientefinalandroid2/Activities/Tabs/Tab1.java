@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
@@ -17,7 +18,7 @@ import serializable.Jugada;
 
 public class Tab1 extends ActionBarActivity implements View.OnClickListener
 {
-    private Button Tab4But1,Tab4But2,Tab4But3,Tab4But4,Tab4But5,Tab4ButOK;
+    private Button Tab4But1,Tab4But2,Tab4But3,Tab4But4,Tab4But5,botonEnviarJugadas, botonTarjeta;
     private ArrayList<Button> arrBotones;
 
     @Override
@@ -34,7 +35,8 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         Tab4But3 = (Button) findViewById(R.id.Tab4But3);arrBotones.add(Tab4But3);
         Tab4But4 = (Button) findViewById(R.id.Tab4But4);arrBotones.add(Tab4But4);
         Tab4But5 = (Button) findViewById(R.id.Tab4But5);arrBotones.add(Tab4But5);
-        Tab4ButOK = (Button)findViewById(R.id.Tab4ButOK);
+        botonEnviarJugadas = (Button)findViewById(R.id.botonEnviarJugadas);
+        botonTarjeta = (Button)findViewById(R.id.botonTarjeta);
         agregarListeners();
 
 
@@ -60,18 +62,17 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         {
             b.setOnClickListener(this);
         }
-        Tab4ButOK.setOnClickListener(this);
+        botonEnviarJugadas.setOnClickListener(this);
+        botonTarjeta.setOnClickListener(this);
     }
     @Override
     public void onClick(View v)
     {
-        System.out.println("CLICK = " +  getResources().getResourceName(v.getId()));
-        //Toast.makeText(this, String.valueOf(getResources().getResourceName(v.getId())) ,Toast.LENGTH_SHORT).show();
-
+        Button botonPresionado = (Button) v;
         int contador = 0;
-        for(Button button : arrBotones)
+        for(Button botonEditarJugada : arrBotones)
         {
-            if(v.equals(button))
+            if(botonPresionado.equals(botonEditarJugada))
             {
                 Intent i = new Intent(this,ActivityCargaJugada.class);
                 i.putExtra("jugada" , contador);
@@ -80,7 +81,7 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
             contador++;
         }
 
-        if (v.equals(Tab4ButOK))
+        if (botonPresionado.equals(botonEnviarJugadas))
         {
             System.out.println("ESTOY A PUNTO DE MANDAR ESTE CONJUNTO AL SERVER:" + ManejadorCliente.getConjuntoJugadasActuales().toString());
             ManejadorCliente.setConjuntoDevuelto(ManejadorCliente.enviarConjuntoJugadasAlServer());
@@ -89,6 +90,12 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
             Intent intentAResultado = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.ActivityResultados.class);
             //intentAResultado.putExtra();
             startActivity(intentAResultado);
+        }
+        else if( botonPresionado.equals(botonTarjeta))
+        {
+            Intent intentQueMeLlevaALaCargaDeTarjeta = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+            intentQueMeLlevaALaCargaDeTarjeta.putExtra("tab?", 3);
+            startActivity(intentQueMeLlevaALaCargaDeTarjeta);
         }
     }
     @Override

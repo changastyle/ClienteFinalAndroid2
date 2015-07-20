@@ -1,5 +1,6 @@
 package com.example.nicolas.clientefinalandroid2.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import cliente.ManejadorCliente;
 import serializable.ConjuntoDevuelto;
+import serializable.ConjuntoJugadas;
 import serializable.RespuestaJugada;
 
 public class ActivityResultados extends ActionBarActivity implements View.OnClickListener
@@ -22,6 +24,7 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
     private TextView textViewResultadosDinero;
     private ArrayList<TextView> arrTextsViewsDeResultados;
     private TextView tvResultados1,tvResultados2,tvResultados3,tvResultados4,tvResultados5;
+    private TextView tvResultados6,tvResultados7,tvResultados8,tvResultados9,tvResultados10;
     private Button botonResultadosIZQ, botonResultadosDER;
 
     @Override
@@ -37,6 +40,11 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         tvResultados3 = (TextView) findViewById(R.id.tvResultados3);arrTextsViewsDeResultados.add(tvResultados3);
         tvResultados4 = (TextView) findViewById(R.id.tvResultados4);arrTextsViewsDeResultados.add(tvResultados4);
         tvResultados5 = (TextView) findViewById(R.id.tvResultados5);arrTextsViewsDeResultados.add(tvResultados5);
+        tvResultados6 = (TextView) findViewById(R.id.tvResultados6);arrTextsViewsDeResultados.add(tvResultados6);
+        tvResultados7 = (TextView) findViewById(R.id.tvResultados7);arrTextsViewsDeResultados.add(tvResultados7);
+        tvResultados8 = (TextView) findViewById(R.id.tvResultados8);arrTextsViewsDeResultados.add(tvResultados8);
+        tvResultados9 = (TextView) findViewById(R.id.tvResultados9);arrTextsViewsDeResultados.add(tvResultados9);
+        tvResultados10 = (TextView) findViewById(R.id.tvResultados10);arrTextsViewsDeResultados.add(tvResultados10);
 
 
         botonResultadosIZQ = (Button) findViewById(R.id.botonResultadosIZQ);botonResultadosIZQ.setOnClickListener(this);
@@ -47,18 +55,36 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         ConjuntoDevuelto conjuntoDevuelto = ManejadorCliente.getConjuntoDevuelto();
 
         System.out.println("NUMEROS SORTEADOS:" + conjuntoDevuelto.toString());
-        textViewResultadosDinero.setText( "Dinero Total Ganado: $" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) +",00");
+        textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) + ",00");
 
         int contador = 0;
-        for(TextView textView : arrTextsViewsDeResultados)
+        for(TextView textViewActual : arrTextsViewsDeResultados)
         {
-            if (contador < conjuntoDevuelto.getArrRespuestasJugada().size())
-            {
-                RespuestaJugada respuestaJugada = conjuntoDevuelto.getArrRespuestasJugada().get(contador);
-                textView.setText( String.valueOf(respuestaJugada.getJugadaRealizada().getNumero() + " GANO $" + respuestaJugada.getDineroGanadoEnEstaJugada() + ",00"));
-                contador++;
-            }
+            textViewActual.setText("Numero: " + conjuntoDevuelto.getArrNumerosSorteados().get(contador));
+            contador++;
         }
+    }
+
+    public void onClick(View v)
+    {
+        //Toast.makeText(this,String.valueOf(v.getId()),Toast.LENGTH_SHORT).show();
+        Button botonPresionado = (Button) v;
+        Intent intentQueVuelveATabActivity = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+        intentQueVuelveATabActivity.putExtra("tab?",1);
+        Intent intentAutoCall = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.ActivityResultados.class);
+
+        if(botonPresionado.equals(botonResultadosIZQ))
+        {
+            ManejadorCliente.vaciarConjuntoJugadas();
+            startActivity(intentQueVuelveATabActivity);
+        }
+        else if(botonPresionado.equals(botonResultadosDER))
+        {
+            //Toast.makeText(this,"Volviste a jugar los mismos numeros",Toast.LENGTH_SHORT).show();
+            ManejadorCliente.enviarConjuntoJugadasAlServer();
+            startActivity(intentAutoCall);
+        }
+
     }
 
     @Override
@@ -81,11 +107,5 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
-        Toast.makeText(this,String.valueOf(v.getId()),Toast.LENGTH_SHORT).show();
     }
 }

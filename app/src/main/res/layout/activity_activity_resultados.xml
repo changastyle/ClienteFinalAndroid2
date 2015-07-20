@@ -13,21 +13,52 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.20"
+            android:background="#000000"
+            android:id="@+id/encabezadoResultados">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Total Ganado:"
+                android:id="@+id/textView1"
+                android:gravity="center"
+                android:padding="15dp"
+                android:layout_weight="0.5"
+                android:textSize="24dp"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textViewResultadosDinero"
+                android:gravity="center"
+                android:padding="15dp"
+                android:layout_weight="0.5"
+                android:textColor="#ff41ff4f" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Dinero Total Ganado"
-            android:id="@+id/textViewResultadosDinero"
+            android:text="Salieron Sorteados:"
+            android:id="@+id/coEncabezadoResultados"
             android:gravity="center"
-            android:padding="15dp"
-            android:layout_weight="0.20" />
+            android:padding="10dp"
+            android:layout_weight="0.15" />
 
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:id="@+id/scrollView4"
-            android:layout_weight="0.5">
+            android:layout_weight="0.6">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -38,7 +69,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Resultado Apuesta 1"
                     android:id="@+id/tvResultados1"
                     android:gravity="center"
                     android:padding="10dp" />
@@ -47,7 +77,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Resultado Apuesta 2"
                     android:id="@+id/tvResultados2"
                     android:gravity="center"
                     android:padding="10dp" />
@@ -56,7 +85,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Resultado Apuesta 3"
                     android:id="@+id/tvResultados3"
                     android:gravity="center"
                     android:padding="10dp" />
@@ -65,7 +93,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Resultado Apuesta 4"
                     android:id="@+id/tvResultados4"
                     android:gravity="center"
                     android:padding="10dp" />
@@ -74,8 +101,47 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Resultado Apuesta 5"
                     android:id="@+id/tvResultados5"
+                    android:gravity="center"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvResultados6"
+                    android:gravity="center"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvResultados7"
+                    android:gravity="center"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvResultados8"
+                    android:gravity="center"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvResultados9"
+                    android:gravity="center"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/tvResultados10"
                     android:gravity="center"
                     android:padding="10dp" />
 

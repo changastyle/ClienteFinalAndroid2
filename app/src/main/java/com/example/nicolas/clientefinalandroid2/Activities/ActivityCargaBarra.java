@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import Threads.ThreadBarraStatusWelcomeActivity;
 import Threads.ThreadPedidorParametros;
 import cliente.*;
+import serializable.ParametrosEncapsuladosParaClientes;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
@@ -27,7 +28,6 @@ public class ActivityCargaBarra extends ActionBarActivity
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         porcentajeBarra = 0 ;
-
         try
         {
             //THREAD 1: PIDE PARAMETROS PEPC al Servidor:
@@ -56,6 +56,7 @@ public class ActivityCargaBarra extends ActionBarActivity
         if(ManejadorCliente.getPepc() != null)
         {
             Intent i = new Intent(this, VentanaContabulaciones.class);
+            i.putExtra("tab?",1);
             startActivity(i);
         }
         else

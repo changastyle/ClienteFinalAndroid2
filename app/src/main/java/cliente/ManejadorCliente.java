@@ -24,6 +24,7 @@ public class ManejadorCliente  extends Application implements Serializable
     private static ParametrosEncapsuladosParaClientes pepc;
     private static ConjuntoJugadas conjuntoJugadasActuales = new ConjuntoJugadas();
     private static ConjuntoDevuelto conjuntoDevuelto;
+    private static Tarjeta tarjetaActual;
 
 
     public static void enviarJugadasTest()
@@ -70,7 +71,14 @@ public class ManejadorCliente  extends Application implements Serializable
         {
             e.printStackTrace();
         }
+        //SETEO EL CONJUNTO DEVUELTO AL MANEJADOR.
+        setConjuntoDevuelto(conjuntoDevuelto);
+
         return conjuntoDevuelto;
+    }
+    public static void vaciarConjuntoJugadas()
+    {
+        conjuntoJugadasActuales = new ConjuntoJugadas();
     }
     public static ConjuntoDevuelto enviarConjuntoJugadasAlServer(ConjuntoJugadas conjuntoJugadas)
     {
