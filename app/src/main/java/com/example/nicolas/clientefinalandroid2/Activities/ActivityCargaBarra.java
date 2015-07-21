@@ -1,10 +1,13 @@
 package com.example.nicolas.clientefinalandroid2.Activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import Threads.ThreadBarraStatusWelcomeActivity;
@@ -19,6 +22,7 @@ public class ActivityCargaBarra extends ActionBarActivity
 {
     private int porcentajeBarra;
     private ProgressBar progressBar;
+    private ImageView imagenTrebol;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +32,8 @@ public class ActivityCargaBarra extends ActionBarActivity
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         porcentajeBarra = 0 ;
+        imagenTrebol = (ImageView) findViewById(R.id.imagenTrebol);
+
         try
         {
             //THREAD 1: PIDE PARAMETROS PEPC al Servidor:
@@ -35,10 +41,14 @@ public class ActivityCargaBarra extends ActionBarActivity
             ThreadPedidorParametros threadPedidorParametros = new ThreadPedidorParametros();
             threadPedidorParametros.start();
 
-
             //THREAD 2: Actualiza la barra:
             ThreadBarraStatusWelcomeActivity threadBarraStatusWelcomeActivity = new ThreadBarraStatusWelcomeActivity(this);
             threadBarraStatusWelcomeActivity.start();
+
+
+            RotateAnimation rotate = new RotateAnimation(0 ,360);
+            rotate.setDuration(3000);
+            imagenTrebol.startAnimation(rotate);
 
             //THREAD 1 FINISH: Espera a que terminen de pasar los parametros PEPC:
             threadPedidorParametros.join();
@@ -48,6 +58,8 @@ public class ActivityCargaBarra extends ActionBarActivity
         {
             e.printStackTrace();
         }
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.coin);
+        mp.start();
     }
     public void pasarActivityPrincipal()
     {
@@ -96,5 +108,13 @@ public class ActivityCargaBarra extends ActionBarActivity
         barra = this.progressBar;
 
         return barra;
+    }
+    public ImageView getTrebol()
+    {
+        return this.imagenTrebol;
+    }
+    public void rotarTrebol(int grados)
+    {
+        imagenTrebol.animate().rotation(1000).start();
     }
 }

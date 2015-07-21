@@ -1,6 +1,7 @@
 package com.example.nicolas.clientefinalandroid2.Activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -58,10 +59,17 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         if(conjuntoDevuelto.dineroTotalGanado() == 0)
         {
             textViewResultadosDinero.setText("No Ganador");
+
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.fracaso);
+                mp.start();
+
+
         }
         else
         {
             textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) + ",00");
+            MediaPlayer mp = MediaPlayer.create(this, R.raw.exito);
+            mp.start();
         }
 
 

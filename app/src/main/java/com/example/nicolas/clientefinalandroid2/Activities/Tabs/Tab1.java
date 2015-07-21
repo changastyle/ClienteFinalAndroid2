@@ -1,6 +1,7 @@
 package com.example.nicolas.clientefinalandroid2.Activities.Tabs;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -120,9 +121,20 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         }
         else if( botonPresionado.equals(botonTarjeta))
         {
-            Intent intentQueMeLlevaALaCargaDeTarjeta = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+            Toast.makeText(this,"asdfas",Toast.LENGTH_SHORT).show();
+
+            try {
+                Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+                intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); // "PRODUCT_MODE for bar codes
+
+                startActivityForResult(intent, 0);
+            }catch (Exception e)
+            {
+             e.printStackTrace();
+            }
+            /*Intent intentQueMeLlevaALaCargaDeTarjeta = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
             intentQueMeLlevaALaCargaDeTarjeta.putExtra("tab?", 3);
-            startActivity(intentQueMeLlevaALaCargaDeTarjeta);
+            startActivity(intentQueMeLlevaALaCargaDeTarjeta);*/
         }
     }
     @Override

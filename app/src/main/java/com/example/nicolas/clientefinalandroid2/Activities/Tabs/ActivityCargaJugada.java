@@ -1,10 +1,14 @@
 package com.example.nicolas.clientefinalandroid2.Activities.Tabs;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -107,6 +111,7 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
         tvPrecio.setText(modelSpinner.get(posicionSpinner));
 
         agregarListeners();
+
     }
     private void agregarListeners()
     {
@@ -118,6 +123,13 @@ public class ActivityCargaJugada extends ActionBarActivity implements View.OnCli
     @Override
     public void onClick(View v)
     {
+        //MediaPlayer mp = MediaPlayer.create(this, R.raw.cli);
+        //MediaPlayer mp = MediaPlayer.create(this, SoundEffectConstants.CLICK);
+        //AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        //audioManager.playSoundEffect(SoundEffectConstants.CLICK);
+
+        v.playSoundEffect(android.view.SoundEffectConstants.CLICK);
+        //mp.start();
         Button b = (Button)v;
 
         //PARA LOS NUMEROS:

@@ -2,6 +2,7 @@ package com.example.nicolas.clientefinalandroid2.Activities;
 
 import android.app.TabActivity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,7 @@ public class VentanaContabulaciones extends TabActivity {
     private TabHost tabHost;
     private ArrayList<TabHost.TabSpec> arrPestañas;
     private TabHost.TabSpec tab1,tab2,tab3;
-
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

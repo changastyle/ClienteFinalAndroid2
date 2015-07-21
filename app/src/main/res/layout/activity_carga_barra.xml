@@ -14,17 +14,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/welcomemsg"
         android:id="@+id/tvWellcome"
-        android:layout_centerVertical="true"
         android:gravity="center"
         android:padding="24dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:textColor="#ffffb140"
         android:textSize="48dp"
         android:layout_weight="2"
-        />
+        android:layout_below="@+id/imagenTrebol"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ProgressBar
         android:layout_width="fill_parent"
@@ -45,5 +42,13 @@
         android:layout_above="@+id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="64dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/imagenTrebol"
+        android:background="@drawable/loteriarn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

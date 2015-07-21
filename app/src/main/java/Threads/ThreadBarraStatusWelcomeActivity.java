@@ -1,5 +1,6 @@
 package Threads;
 
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,11 +14,13 @@ public class ThreadBarraStatusWelcomeActivity extends Thread
     int progreso = 0;
     private ActivityCargaBarra activityWelcome;
     private ProgressBar progressBar;
+    private ImageView imagenTrebol;
 
     public ThreadBarraStatusWelcomeActivity(ActivityCargaBarra activityWelcome)
     {
         progressBar = activityWelcome.getBarra();
         this.activityWelcome = activityWelcome;
+
     }
     public void run()
     {
@@ -27,7 +30,8 @@ public class ThreadBarraStatusWelcomeActivity extends Thread
             {
                 progreso += 10;
                 progressBar.setProgress(progreso);
-                Thread.sleep(250);
+                //activityWelcome.rotarTrebol(progreso);
+                Thread.sleep(300);
 
                 if(progreso == 100)
                 {
