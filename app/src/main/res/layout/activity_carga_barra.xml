@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="#fffdf6ff"
+    android:background="@drawable/gradiente_radial"
     android:weightSum="4"
     style="?android:attr/progressBarStyleHorizontal">
 
@@ -21,7 +21,8 @@
         android:layout_weight="2"
         android:layout_below="@+id/imagenTrebol"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/progressBar" />
 
     <ProgressBar
         android:layout_width="fill_parent"

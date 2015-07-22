@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="botonInicial" type="color">#ffffb140</item>
-    <item name="botonFinal" type="color">#fffba210</item>
+    <item name="botonInicial" type="color">#ffffd443</item>
+    <item name="botonFinal" type="color">#fffea510</item>
+    <item name="botonTarjetaInicial" type="color">#ffff4e45</item>
+    <item name="botonTarjetaFinal" type="color">#ffff1700</item>
+    <item name="botonEnvioConjuntoInicial" type="color">#ff5272ff</item>
+    <item name="botonEnvioConjuntoFinal" type="color">#ff8ba8ff</item>
+    <item name="gradientRadialInicial" type="color">#ffaba4ff</item>
+    <item name="gradientRadialMedio" type="color">#ff7d76b9</item>
+    <item name="gradientRadialFinal" type="color">#ff2a62bc</item>
+    <item name="gradienteGrisInicial" type="color">#ffffffff</item>
+    <item name="gradienteGrisFinal" type="color">#80ffffff</item>
+    <item name="grisResultadosInicial" type="color">#ff979396</item>
+    <item name="grisResultadosFinal" type="color">#ff706d6f</item>
 </resources>

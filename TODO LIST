@@ -14,8 +14,9 @@
 16) si el total ganado == 0,entoces decir: NO GANADOR.X
 17) Texto TOp Resultado =  SORTEO.X
 18)BLOQUEAR PORTRAIT MODE ONLY.X
+20)Agregar un bip cuando ganas un bop cuando perdes.X
 
 6)Agregar lectura de tarjetas.
 9)Devolver un float , no int.
 19)MATAR ACTIVITIES AL PEDO CUANDO VOY PARA ATRAS.
-20)Agregar un bip cuando ganas un bop cuando perdes.
+
