@@ -25,5 +25,6 @@
         android:id="@+id/botonReintentarConexion"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/boton_tarjeta" />
+        android:background="@drawable/boton_tarjeta"
+        android:textColor="#ffffff" />
 </RelativeLayout>

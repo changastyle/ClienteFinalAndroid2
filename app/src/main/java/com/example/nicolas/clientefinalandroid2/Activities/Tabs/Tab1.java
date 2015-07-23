@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import cliente.ManejadorCliente;
 import serializable.Jugada;
+import serializable.Tarjeta;
 
 public class Tab1 extends ActionBarActivity implements View.OnClickListener
 {
@@ -121,20 +122,10 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         }
         else if( botonPresionado.equals(botonTarjeta))
         {
-            Toast.makeText(this,"asdfas",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); // "PRODUCT_MODE for bar codes
 
-            try {
-                Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                intent.putExtra("SCAN_MODE", "QR_CODE_MODE"); // "PRODUCT_MODE for bar codes
-
-                startActivityForResult(intent, 0);
-            }catch (Exception e)
-            {
-             e.printStackTrace();
-            }
-            /*Intent intentQueMeLlevaALaCargaDeTarjeta = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
-            intentQueMeLlevaALaCargaDeTarjeta.putExtra("tab?", 3);
-            startActivity(intentQueMeLlevaALaCargaDeTarjeta);*/
+            startActivityForResult(intent, 0);
         }
     }
     @Override
@@ -158,5 +149,24 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onActivityResult(int requestCode, int resultCode, Intent intent)
+    {
+        if (requestCode == 0)
+        {
+
+            if (resultCode == RESULT_OK)
+            {
+                Tarjeta tarjetaActual = new Tarjeta(intent.getStringExtra("SCAN_RESULT"),0);
+                ManejadorCliente.setTarjetaActual(tarjetaActual);
+                this.botonTarjeta.setText(String.valueOf(ManejadorCliente.getTarjetaActual().getSaldo()));
+            }
+            else if (resultCode == RESULT_CANCELED)
+            {
+                //TARJETA FALLO:
+                /*tvStatus.setText("Press a button to start a scan.");
+                tvResult.setText("Scan cancelled.");*/
+            }
+        }
     }
 }
