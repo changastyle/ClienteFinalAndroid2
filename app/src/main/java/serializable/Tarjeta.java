@@ -7,50 +7,68 @@ import java.io.Serializable;
  */
 public class Tarjeta implements Serializable
 {
-    private String ID;
-    private int saldo;
+    private int ID;
+    private String serial;
+    private float saldo;
 
     public Tarjeta()
     {
-        ID = "000000000000";
-        saldo = 0 ;
+        ID = 0;
+        serial = "0" ;
+        saldo = 0.0f;
     }
-    public Tarjeta(String ID, int saldo)
+    public Tarjeta(int ID , String serial , float saldo)
     {
         this.ID = ID;
+        this.serial = serial ;
         this.saldo = saldo;
     }
-    public boolean tengoSaldo(int cuanto)
+
+    public int getID()
+    {
+        return ID;
+    }
+
+    public void setID(int ID)
+    {
+        this.ID = ID;
+    }
+
+    public String getSerial()
+    {
+        return serial;
+    }
+
+    public void setSerial(String serial)
+    {
+        this.serial = serial;
+    }
+
+    public float getSaldo()
+    {
+        return saldo;
+    }
+
+    public void setSaldo(float dinero)
+    {
+        this.saldo = dinero;
+    }
+
+    public boolean estaVacia()
     {
         boolean respuesta = false;
-        if( this.saldo >= cuanto )
+
+        if(ID == 0 )
         {
             respuesta = true;
         }
 
         return respuesta;
     }
-
-    /*GYS*/
-    public int getSaldo()
-    {
-        return saldo;
-    }
-    public void setSaldo(int saldo)
-    {
-        this.saldo = saldo;
-    }
-    public String getID()
-    {
-        return ID;
-    }
-    public void setID(String ID)
-    {
-        this.ID = ID;
-    }
     @Override
     public String toString()
     {
-        return "TarjetaID:"+ ID + " -> $" + saldo;
+        return "Tarjeta{" + "ID = " + ID + ", serial = " + serial + ", saldo = " + saldo + '}';
     }
+
 }

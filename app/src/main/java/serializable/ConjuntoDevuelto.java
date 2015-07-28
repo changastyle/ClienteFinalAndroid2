@@ -7,6 +7,7 @@ public class ConjuntoDevuelto implements Serializable
 {
     private ArrayList<RespuestaJugada> arrRespuestasJugada;
     private ArrayList<String> arrNumerosSorteados;
+    private Tarjeta tarjetaDevuelta;
 
 
 
@@ -14,6 +15,7 @@ public class ConjuntoDevuelto implements Serializable
     {
         arrRespuestasJugada = new ArrayList<RespuestaJugada>();
         arrNumerosSorteados = new ArrayList<String>();
+        tarjetaDevuelta = new Tarjeta();
     }
 
     public void agregarRespuestaJugada(RespuestaJugada respuestaJugada)
@@ -50,12 +52,22 @@ public class ConjuntoDevuelto implements Serializable
 
         return dineroTotalGanado;
     }
+
+    public Tarjeta getTarjetaDevuelta() {
+        return tarjetaDevuelta;
+    }
+
+    public void setTarjetaDevuelta(Tarjeta tarjetaDevuelta) {
+        this.tarjetaDevuelta = tarjetaDevuelta;
+    }
+
     @Override
     public String toString()
     {
         String salida =  "\n|---------------- ConjuntoDevuelto -----------------|";
 
         salida += "\n Total Ganado: $ " + this.dineroTotalGanado();
+        salida += "\n Tarjeta ID=" + tarjetaDevuelta.toString();
         salida += "\n|---------------- RESPUESTAS JUGADAS: -----------------|";
         System.out.println("\narrRespuestasJugada.LENGTH:" + arrRespuestasJugada.size());
         for (RespuestaJugada respuesta : arrRespuestasJugada)

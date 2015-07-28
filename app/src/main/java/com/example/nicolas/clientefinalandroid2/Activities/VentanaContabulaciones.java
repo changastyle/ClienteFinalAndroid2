@@ -9,12 +9,15 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 
 import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab1;
+import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab2;
+import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab3;
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
 
-public class VentanaContabulaciones extends TabActivity {
+public class VentanaContabulaciones extends TabActivity
+{
 
     private TabHost tabHost;
     private ArrayList<TabHost.TabSpec> arrPestañas;
@@ -45,7 +48,7 @@ public class VentanaContabulaciones extends TabActivity {
         //PESTAÑA 2:
         tab2 = tabHost.newTabSpec("tab2");
         tab2.setIndicator("Seleccionar 5 Sueños:");
-        Intent intent2 = new Intent(this,  com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab2.class);
+        Intent intent2 = new Intent(this, Tab2.class);
         tab2.setContent(intent2);
         arrPestañas.add(tab2);
         this.tabHost.addTab(tab2);
@@ -53,7 +56,7 @@ public class VentanaContabulaciones extends TabActivity {
         //PESTAÑA 3:
         tab3 = tabHost.newTabSpec("tab3");
         tab3.setIndicator("Tarjeta Saldo");
-        Intent intent3 = new Intent(this,  com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab3.class);
+        Intent intent3 = new Intent(this,  Tab3.class);
         tab3.setContent(intent3);
         arrPestañas.add(tab3);
         this.tabHost.addTab(tab3);
@@ -64,7 +67,6 @@ public class VentanaContabulaciones extends TabActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_tabed, menu);
         return true;
     }
@@ -72,13 +74,10 @@ public class VentanaContabulaciones extends TabActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 

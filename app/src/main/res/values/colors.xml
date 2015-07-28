@@ -13,4 +13,6 @@
     <item name="gradienteGrisFinal" type="color">#80ffffff</item>
     <item name="grisResultadosInicial" type="color">#ff979396</item>
     <item name="grisResultadosFinal" type="color">#ff706d6f</item>
+    <item name="botonVerdeInicial" type="color">#ff18ff00</item>
+    <item name="botonVerdeFinal" type="color">#ff16d200</item>
 </resources>

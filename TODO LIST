@@ -21,4 +21,5 @@
 19)MATAR ACTIVITIES AL PEDO CUANDO VOY PARA ATRAS.
 20) Reparar el bug de reingresar a activity de carga de jugadas el tema de la plata.
 21)Boton cierre Aplicacion.
-
+22)agregar un historico de los movimientos de las tarjetas.
+23) SI NO HAY TARJETA o no hay saldo, entonces no se puede jugar, en el cliente y en el servidor.

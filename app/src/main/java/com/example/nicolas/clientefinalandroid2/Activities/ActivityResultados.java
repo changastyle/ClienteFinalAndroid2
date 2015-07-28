@@ -9,16 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import cliente.ManejadorCliente;
+import clienteNicoExpress.cliente.ManejadorCliente;
 import serializable.ConjuntoDevuelto;
-import serializable.ConjuntoJugadas;
-import serializable.RespuestaJugada;
 
 public class ActivityResultados extends ActionBarActivity implements View.OnClickListener
 {

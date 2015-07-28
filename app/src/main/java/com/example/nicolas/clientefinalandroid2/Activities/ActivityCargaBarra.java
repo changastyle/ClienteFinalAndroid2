@@ -10,10 +10,9 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import Threads.ThreadBarraStatusWelcomeActivity;
-import Threads.ThreadPedidorParametros;
-import cliente.*;
-import serializable.ParametrosEncapsuladosParaClientes;
+import clienteNicoExpress.Threads.ThreadBarraStatusWelcomeActivity;
+import clienteNicoExpress.Threads.ThreadPedidorParametros;
+import clienteNicoExpress.cliente.*;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
@@ -37,7 +36,6 @@ public class ActivityCargaBarra extends ActionBarActivity
         try
         {
             //THREAD 1: PIDE PARAMETROS PEPC al Servidor:
-            //manejadorCliente = new ManejadorCliente();
             ThreadPedidorParametros threadPedidorParametros = new ThreadPedidorParametros();
             threadPedidorParametros.start();
 
@@ -58,12 +56,14 @@ public class ActivityCargaBarra extends ActionBarActivity
         {
             e.printStackTrace();
         }
+
+        //Reproduce el sonido de las monedas:
         MediaPlayer mp = MediaPlayer.create(this, R.raw.coin);
         mp.start();
     }
     public void pasarActivityPrincipal()
     {
-        //SI EL CONTROLLER TIENE LOS PARAMETROS: ENTONCES PASO A LA TABED ACTIVITY SINO A LA ERROR ACTIVITY:
+        //Si tengo los parametros en el controller: entonces voy a la activity con tabulaciones, sino voy a activity de error:
 
         if(ManejadorCliente.getPepc() != null)
         {
@@ -89,12 +89,7 @@ public class ActivityCargaBarra extends ActionBarActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

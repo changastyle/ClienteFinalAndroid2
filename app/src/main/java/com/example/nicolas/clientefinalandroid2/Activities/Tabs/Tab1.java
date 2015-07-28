@@ -1,20 +1,18 @@
 package com.example.nicolas.clientefinalandroid2.Activities.Tabs;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import cliente.ManejadorCliente;
+import clienteNicoExpress.cliente.ManejadorCliente;
 import serializable.Jugada;
 import serializable.Tarjeta;
 
@@ -43,6 +41,12 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
 
         //SETEO EL TEXTO DE LOS BOTONES:
+
+        if(ManejadorCliente.getTarjetaActual() != null)
+        {
+            cargarTarjeta(ManejadorCliente.getTarjetaActual());
+        }
+
         int contador = 0;
         for(Jugada jugada : ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas())
         {
@@ -98,6 +102,13 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
     public void onClick(View v)
     {
         Button botonPresionado = (Button) v;
+
+        if(ManejadorCliente.getTarjetaActual() != null)
+        {
+            this.botonTarjeta.setText(String.valueOf(ManejadorCliente.getTarjetaActual() .getSerial()));
+        }
+
+
         int contador = 0;
         for(Button botonEditarJugada : arrBotones)
         {
@@ -144,7 +155,8 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
 
@@ -157,9 +169,14 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
             if (resultCode == RESULT_OK)
             {
-                Tarjeta tarjetaActual = new Tarjeta(intent.getStringExtra("SCAN_RESULT"),0);
+                int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT").trim());
+
+                Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
+                System.out.println("Tarjeta Actual:" + tarjetaActual);
                 ManejadorCliente.setTarjetaActual(tarjetaActual);
-                this.botonTarjeta.setText(String.valueOf(ManejadorCliente.getTarjetaActual().getSaldo()));
+                System.out.println("M TARJETA ACUTAL:" + ManejadorCliente.getTarjetaActual());
+
+                this.cargarTarjeta(tarjetaActual);
             }
             else if (resultCode == RESULT_CANCELED)
             {
@@ -168,5 +185,20 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
                 tvResult.setText("Scan cancelled.");*/
             }
         }
+    }
+
+    private void cargarTarjeta(Tarjeta tarjetaActual)
+    {
+        if(tarjetaActual != null && !tarjetaActual.estaVacia() )
+        {
+            this.botonTarjeta.setText(ManejadorCliente.getTarjetaActual().getSerial());
+            this.botonTarjeta.setBackgroundResource(R.drawable.boton_verde);
+        }
+        else
+        {
+            this.botonTarjeta.setText(R.string.textoBotonTarjeta);
+            this.botonTarjeta.setBackgroundResource(R.drawable.boton_tarjeta);
+        }
+
     }
 }

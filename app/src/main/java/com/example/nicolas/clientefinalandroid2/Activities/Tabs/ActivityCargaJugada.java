@@ -1,14 +1,10 @@
 package com.example.nicolas.clientefinalandroid2.Activities.Tabs;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SoundEffectConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +14,7 @@ import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import cliente.ManejadorCliente;
+import clienteNicoExpress.cliente.ManejadorCliente;
 import serializable.Jugada;
 import serializable.ParametrosEncapsuladosParaClientes;
 
