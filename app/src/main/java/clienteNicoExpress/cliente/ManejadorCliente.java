@@ -13,8 +13,8 @@ public class ManejadorCliente implements Serializable
 {   
     //private final String direccionIPServer = clienteNicoExpress.XMLAPI.XMLHandler.leer("config.xml","direccionIP");
     //private final static String direccionIPServer = "10.0.2.2";
-    private final static String direccionIPServer = "192.168.5.189";
-    //private final static String direccionIPServer = "192.168.1.36";
+    //private final static String direccionIPServer = "192.168.5.189";
+    private final static String direccionIPServer = "104.236.220.19";
     //private final int puertoServer = clienteNicoExpress.XMLAPI.XMLHandler.leerInt("config.xml","port");
     private final static int puertoServer = 9999;
     private static ClienteGenerico cliente;

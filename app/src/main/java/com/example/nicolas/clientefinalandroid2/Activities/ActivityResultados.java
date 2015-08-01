@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
@@ -50,31 +51,35 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
 
         //CARGO LOS DATOS EN LA VISTA:
 
-        ConjuntoDevuelto conjuntoDevuelto = ManejadorCliente.getConjuntoDevuelto();
-
-
-        if(conjuntoDevuelto.dineroTotalGanado() == 0)
+        if(ManejadorCliente.getConjuntoDevuelto() != null)
         {
-            textViewResultadosDinero.setText("No Ganador");
+            ConjuntoDevuelto conjuntoDevuelto = ManejadorCliente.getConjuntoDevuelto();
+
+            //Toast.makeText(this, "$" +  conjuntoDevuelto.getTarjetaDevuelta().getSaldo() ,Toast.LENGTH_SHORT).show();
+
+            if(conjuntoDevuelto.dineroTotalGanado() == 0)
+            {
+                textViewResultadosDinero.setText("No Ganador");
 
                 MediaPlayer mp = MediaPlayer.create(this, R.raw.fracaso);
                 mp.start();
 
 
-        }
-        else
-        {
-            textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()) + ",00");
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.exito);
-            mp.start();
-        }
+            }
+            else
+            {
+                textViewResultadosDinero.setText("$" + String.valueOf(conjuntoDevuelto.dineroTotalGanado()));
+                MediaPlayer mp = MediaPlayer.create(this, R.raw.exito);
+                mp.start();
+            }
 
 
-        int contador = 0;
-        for(TextView textViewActual : arrTextsViewsDeResultados)
-        {
-            textViewActual.setText(conjuntoDevuelto.getArrNumerosSorteados().get(contador));
-            contador++;
+            int contador = 0;
+            for(TextView textViewActual : arrTextsViewsDeResultados)
+            {
+                textViewActual.setText(conjuntoDevuelto.getArrNumerosSorteados().get(contador));
+                contador++;
+            }
         }
     }
 
@@ -83,19 +88,25 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         //Toast.makeText(this,String.valueOf(v.getId()),Toast.LENGTH_SHORT).show();
         Button botonPresionado = (Button) v;
         Intent intentQueVuelveATabActivity = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
-        intentQueVuelveATabActivity.putExtra("tab?",1);
-        Intent intentAutoCall = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.ActivityResultados.class);
+
 
         if(botonPresionado.equals(botonResultadosIZQ))
         {
             ManejadorCliente.vaciarConjuntoJugadas();
+            intentQueVuelveATabActivity.putExtra("tab?",1);
             startActivity(intentQueVuelveATabActivity);
+            this.finish();
         }
         else if(botonPresionado.equals(botonResultadosDER))
         {
-            //Toast.makeText(this,"Volviste a jugar los mismos numeros",Toast.LENGTH_SHORT).show();
+            botonResultadosDER.setEnabled(false);
+            botonResultadosIZQ.setEnabled(false);
+
             ManejadorCliente.enviarConjuntoJugadasAlServer();
-            startActivity(intentAutoCall);
+
+            intentQueVuelveATabActivity.putExtra("tab?", 2);
+            startActivity(intentQueVuelveATabActivity);
+            this.finish();
         }
 
     }

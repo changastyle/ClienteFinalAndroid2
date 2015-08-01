@@ -15,11 +15,13 @@
 17) Texto TOp Resultado =  SORTEO.X
 18)BLOQUEAR PORTRAIT MODE ONLY.X
 20)Agregar un bip cuando ganas un bop cuando perdes.X
+6)Agregar lectura de tarjetas.X
+9)Devolver un float , no int.X
+19)MATAR ACTIVITIES AL PEDO CUANDO VOY PARA ATRAS.X
+20) Reparar el bug de reingresar a activity de carga de jugadas el tema de la plata.X
 
-6)Agregar lectura de tarjetas.
-9)Devolver un float , no int.
-19)MATAR ACTIVITIES AL PEDO CUANDO VOY PARA ATRAS.
-20) Reparar el bug de reingresar a activity de carga de jugadas el tema de la plata.
-21)Boton cierre Aplicacion.
 22)agregar un historico de los movimientos de las tarjetas.
 23) SI NO HAY TARJETA o no hay saldo, entonces no se puede jugar, en el cliente y en el servidor.
+24) Settings exit de la app.
+25)Agregar animaciones de exito y fracaso.
+16)Animaciones entre activities.

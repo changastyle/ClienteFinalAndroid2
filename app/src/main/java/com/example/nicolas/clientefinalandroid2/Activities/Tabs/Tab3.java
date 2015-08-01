@@ -73,8 +73,8 @@ public class Tab3 extends ActionBarActivity implements View.OnClickListener{
 
                 Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
 
-                this.tab4tvDinero.setText(String.valueOf(ManejadorCliente.getTarjetaActual().getSaldo()));
-                this.botonTab3LeerQR.setText(String.valueOf(ManejadorCliente.getTarjetaActual().getSerial()));
+                this.tab4tvDinero.setText("$" + String.valueOf(ManejadorCliente.getTarjetaActual().getSaldo()));
+                this.botonTab3LeerQR.setText("Nro Tarjeta: " + String.valueOf(ManejadorCliente.getTarjetaActual().getSerial()));
             }
             else if (resultCode == RESULT_CANCELED)
             {

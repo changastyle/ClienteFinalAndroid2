@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
@@ -47,12 +48,13 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
             cargarTarjeta(ManejadorCliente.getTarjetaActual());
         }
 
+        habilitarBotones();
         int contador = 0;
         for(Jugada jugada : ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas())
         {
             if(! jugada.estoyVacia())
             {
-                arrBotones.get(contador).setText(jugada.getNumero() + " x $" + jugada.getDineroApostado() + ".00");
+                arrBotones.get(contador).setText(jugada.getNumero() + " x $" + jugada.getDineroApostado() );
             }
             else
             {
@@ -89,6 +91,25 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
 
     }
+    private void habilitarBotones()
+    {
+        if(ManejadorCliente.getTarjetaActual() != null && ! ManejadorCliente.getTarjetaActual().estaVacia())
+        {
+            for (Button botonActual :arrBotones)
+            {
+                botonActual.setEnabled(true);
+            }
+            botonEnviarJugadas.setEnabled(true);
+        }
+        else
+        {
+            for (Button botonActual :arrBotones)
+            {
+                botonActual.setEnabled(false);
+            }
+            botonEnviarJugadas.setEnabled(false);
+        }
+    }
     private void agregarListeners()
     {
         for(Button b : arrBotones)
@@ -117,19 +138,29 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
                 Intent i = new Intent(this,ActivityCargaJugada.class);
                 i.putExtra("jugada" , contador);
                 startActivity(i);
+                this.finish();
             }
             contador++;
         }
 
         if (botonPresionado.equals(botonEnviarJugadas))
         {
-            System.out.println("ESTOY A PUNTO DE MANDAR ESTE CONJUNTO AL SERVER:" + ManejadorCliente.getConjuntoJugadasActuales().toString());
-            ManejadorCliente.setConjuntoDevuelto(ManejadorCliente.enviarConjuntoJugadasAlServer());
+            if(ManejadorCliente.getTarjetaActual() != null )
+            {
+                //System.out.println("ESTOY A PUNTO DE MANDAR ESTE CONJUNTO AL SERVER:" + ManejadorCliente.getConjuntoJugadasActuales().toString());
+                ManejadorCliente.enviarConjuntoJugadasAlServer();
 
-            System.out.println("RECIBI COMO CONJUNTO DEVUELTO:" + ManejadorCliente.getConjuntoDevuelto().toString());
-            Intent intentAResultado = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.ActivityResultados.class);
-            //intentAResultado.putExtra();
-            startActivity(intentAResultado);
+                System.out.println("RECIBI COMO CONJUNTO DEVUELTO:" + ManejadorCliente.getConjuntoDevuelto().toString());
+                Intent intentAResultado = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+                intentAResultado.putExtra("tab?",2);
+                startActivity(intentAResultado);
+                this.finish();
+            }
+            else
+            {
+                Toast.makeText(this,"No hay tarjeta seleccionada", Toast.LENGTH_SHORT).show();
+            }
+
         }
         else if( botonPresionado.equals(botonTarjeta))
         {
@@ -172,11 +203,13 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
                 int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT").trim());
 
                 Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
-                System.out.println("Tarjeta Actual:" + tarjetaActual);
                 ManejadorCliente.setTarjetaActual(tarjetaActual);
-                System.out.println("M TARJETA ACUTAL:" + ManejadorCliente.getTarjetaActual());
 
                 this.cargarTarjeta(tarjetaActual);
+
+                this.habilitarBotones();
+
+                Toast.makeText(this,"Saldo disponible: $" + tarjetaActual.getSaldo() ,Toast.LENGTH_SHORT).show();
             }
             else if (resultCode == RESULT_CANCELED)
             {
@@ -191,7 +224,7 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
     {
         if(tarjetaActual != null && !tarjetaActual.estaVacia() )
         {
-            this.botonTarjeta.setText(ManejadorCliente.getTarjetaActual().getSerial());
+            this.botonTarjeta.setText("Nro Tarjeta: " + ManejadorCliente.getTarjetaActual().getSerial());
             this.botonTarjeta.setBackgroundResource(R.drawable.boton_verde);
         }
         else

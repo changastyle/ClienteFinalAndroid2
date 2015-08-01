@@ -6,9 +6,9 @@
     <item name="botonTarjetaFinal" type="color">#ffff1700</item>
     <item name="botonEnvioConjuntoInicial" type="color">#ff5272ff</item>
     <item name="botonEnvioConjuntoFinal" type="color">#ff8ba8ff</item>
-    <item name="gradientRadialInicial" type="color">#ffaba4ff</item>
+    <item name="gradientRadialInicial" type="color">#497BAE</item>
     <item name="gradientRadialMedio" type="color">#ff7d76b9</item>
-    <item name="gradientRadialFinal" type="color">#ff2a62bc</item>
+    <item name="gradientRadialFinal" type="color">#29598A</item>
     <item name="gradienteGrisInicial" type="color">#ffffffff</item>
     <item name="gradienteGrisFinal" type="color">#80ffffff</item>
     <item name="grisResultadosInicial" type="color">#ff979396</item>

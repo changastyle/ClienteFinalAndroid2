@@ -70,11 +70,13 @@ public class ActivityCargaBarra extends ActionBarActivity
             Intent i = new Intent(this, VentanaContabulaciones.class);
             i.putExtra("tab?",1);
             startActivity(i);
+            this.finish();
         }
         else
         {
             Intent i = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.ErrorParametersActivity.class);
             startActivity(i);
+            this.finish();
         }
     }
 

@@ -39,7 +39,7 @@ public class VentanaContabulaciones extends TabActivity
 
         //PESTAÑA 1:
         tab1 = tabHost.newTabSpec("tab1");
-        tab1.setIndicator("Ingresar 5 Numeros");
+        tab1.setIndicator(getResources().getString(R.string.TextoIndicadorTab1));
         Intent intent1 = new Intent(this,  Tab1.class);
         tab1.setContent(intent1);
         arrPestañas.add(tab1);
@@ -47,15 +47,15 @@ public class VentanaContabulaciones extends TabActivity
 
         //PESTAÑA 2:
         tab2 = tabHost.newTabSpec("tab2");
-        tab2.setIndicator("Seleccionar 5 Sueños:");
-        Intent intent2 = new Intent(this, Tab2.class);
+        tab2.setIndicator(getResources().getString(R.string.TextoIndicadorTab2));
+        Intent intent2 = new Intent(this, ActivityResultados.class);
         tab2.setContent(intent2);
         arrPestañas.add(tab2);
         this.tabHost.addTab(tab2);
 
         //PESTAÑA 3:
         tab3 = tabHost.newTabSpec("tab3");
-        tab3.setIndicator("Tarjeta Saldo");
+        tab3.setIndicator(getResources().getString(R.string.TextoIndicadorTab3));
         Intent intent3 = new Intent(this,  Tab3.class);
         tab3.setContent(intent3);
         arrPestañas.add(tab3);

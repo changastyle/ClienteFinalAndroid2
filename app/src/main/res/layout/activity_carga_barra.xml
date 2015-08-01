@@ -16,7 +16,7 @@
         android:id="@+id/tvWellcome"
         android:gravity="center"
         android:padding="24dp"
-        android:textColor="#ffffb140"
+        android:textColor="#ff56b53b"
         android:textSize="48dp"
         android:layout_weight="2"
         android:layout_below="@+id/imagenTrebol"
