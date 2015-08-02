@@ -46,6 +46,11 @@ public class Tab4 extends ActionBarActivity implements View.OnClickListener
         intentToWebBrowser.setData(Uri.parse(url));
         startActivity(intentToWebBrowser);
     }
+    public void llamarATecno(View v)
+    {
+        Intent intentQueLlamaATecno = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + getResources().getString(R.string.telefonoTecno)));
+        startActivity(intentQueLlamaATecno);
+    }
     @Override
     public void onClick(View v)
     {

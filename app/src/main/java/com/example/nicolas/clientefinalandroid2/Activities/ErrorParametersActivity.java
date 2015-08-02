@@ -54,7 +54,7 @@ public class ErrorParametersActivity extends ActionBarActivity implements View.O
         }
         else if(botonPresionado.equals(botonHelp))
         {
-            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "294154311719"));
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + getResources().getString(R.string.telfonoDesarrollador)));
             startActivity(intent);
             /*
             String url = "http://ngrossi.ddns.net";
