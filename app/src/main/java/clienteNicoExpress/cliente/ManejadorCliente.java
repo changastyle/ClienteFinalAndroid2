@@ -1,8 +1,14 @@
 package clienteNicoExpress.cliente;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
+import android.view.MenuItem;
+
+import com.example.nicolas.clientefinalandroid2.R;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import serializable.ConjuntoDevuelto;
 import serializable.ConjuntoJugadas;
@@ -85,7 +91,7 @@ public class ManejadorCliente implements Serializable
     }
     public static void agregarJugadaAlConjunto(Jugada jugada,int posicion)
     {
-        conjuntoJugadasActuales.agregarJugada(jugada,posicion);
+        conjuntoJugadasActuales.agregarJugada(jugada, posicion);
     }
     public static void vaciarConjuntoJugadas()
     {
@@ -200,7 +206,28 @@ public class ManejadorCliente implements Serializable
     }
 
 
+    public static boolean menuOperaciones(MenuItem item,Activity activityActual)
+    {
+        int id = item.getItemId();
 
+        switch (id)
+        {
+            case R.id.contacto:
+
+                Intent intentToContato = new Intent( activityActual ,com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab4.class);
+                activityActual.startActivity(intentToContato);
+
+                return true;
+            case R.id.exit:
+                System.exit(0);
+                return true;
+            case R.id.configuracion:
+                System.out.println("Configuracion");
+                return true;
+            default:
+                return true;
+        }
+    }
 
 
 

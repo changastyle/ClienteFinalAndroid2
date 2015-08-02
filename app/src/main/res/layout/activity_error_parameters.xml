@@ -27,4 +27,14 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/boton_tarjeta"
         android:textColor="#ffffff" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/botonHelp"
+        android:background="@drawable/boton_tarjeta"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Contactarse con el desarrollador" />
 </RelativeLayout>

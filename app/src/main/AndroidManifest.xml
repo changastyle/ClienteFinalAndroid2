@@ -3,6 +3,7 @@
     package="com.example.nicolas.clientefinalandroid2" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +12,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".Activities.ActivityCargaBarra"
-            android:label="@string/app_name"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,15 +23,15 @@
         </activity>
         <activity
             android:name=".Activities.VentanaContabulaciones"
-            android:label="@string/title_activity_tabed"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_tabed"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Activities.Tabs.ActivityCargaJugada"
-            android:label="@string/title_activity_tab1"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_tab1"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Activities.Tabs.Tab2"
@@ -43,21 +43,25 @@
         </activity>
         <activity
             android:name=".Activities.ErrorParametersActivity"
-            android:label="@string/title_activity_error_parameters"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_error_parameters"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Activities.Tabs.Tab1"
-            android:label="@string/title_activity_tab4"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_tab4"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Activities.ActivityResultados"
-            android:label="@string/title_activity_activity_resultados"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_activity_resultados"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Activities.Tabs.Tab4"
+            android:label="@string/title_activity_tab4" >
         </activity>
     </application>
 

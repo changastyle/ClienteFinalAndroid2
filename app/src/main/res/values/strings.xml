@@ -20,9 +20,10 @@
     <string name="tv2Inicial"></string>
     <string name="coEncabezadoActivityResultados">SORTEO</string>
     <string name="textoBotonTarjeta">Vincular Tarjeta para jugar</string>
-    <string name="TextoIndicadorTab1">Cargar Apuestas</string>
-    <string name="TextoIndicadorTab2">Ultimos Resultados</string>
-    <string name="TextoIndicadorTab3">Chequear saldo tarjeta</string>
-
+    <string name="TextoIndicadorTab1">Apuestas</string>
+    <string name="TextoIndicadorTab2">Resultados</string>
+    <string name="TextoIndicadorTab3">Saldo</string>
+    <string name="TextoIndicadorTab4">Creditos</string>
+    <string name="websiteDeveloper">http://ngrossi.ddns.net</string>
     <string name="botonTarjetaTab3">Chequear el saldo de la tarjeta</string>
 </resources>

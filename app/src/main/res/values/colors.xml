@@ -15,4 +15,6 @@
     <item name="grisResultadosFinal" type="color">#ff706d6f</item>
     <item name="botonVerdeInicial" type="color">#ff18ff00</item>
     <item name="botonVerdeFinal" type="color">#ff16d200</item>
+    <item name="botonNaranjaInicial" type="color">#ffff9148</item>
+    <item name="botonNaranjaFinal" type="color">#fffab24b</item>
 </resources>

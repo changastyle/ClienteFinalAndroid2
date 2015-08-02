@@ -15,13 +15,15 @@ import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
+import clienteNicoExpress.cliente.ManejadorCliente;
+
 
 public class VentanaContabulaciones extends TabActivity
 {
 
     private TabHost tabHost;
     private ArrayList<TabHost.TabSpec> arrPestañas;
-    private TabHost.TabSpec tab1,tab2,tab3;
+    private TabHost.TabSpec tab1,tab2,tab3,tab4;
     private MediaPlayer mp;
 
     @Override
@@ -61,27 +63,30 @@ public class VentanaContabulaciones extends TabActivity
         arrPestañas.add(tab3);
         this.tabHost.addTab(tab3);
 
+        //PESTAÑA 4:
+        /*tab4 = tabHost.newTabSpec("tab4");
+        tab4.setIndicator(getResources().getString(R.string.TextoIndicadorTab4));
+        Intent intent4 = new Intent(this,  com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab4.class);
+        tab4.setContent(intent4);
+        arrPestañas.add(tab4);
+        this.tabHost.addTab(tab4);*/
+
         this.getCurrentTabHost().setCurrentTab(tabALaQueTengoQueIrAlIniciar);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_tabed, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return ManejadorCliente.menuOperaciones(item,this);
     }
     public TabHost getCurrentTabHost()
     {
