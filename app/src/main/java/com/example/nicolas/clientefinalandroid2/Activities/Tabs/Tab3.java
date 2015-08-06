@@ -9,9 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.LoadingActivityWaitingForTarjetaFromQR;
 import com.example.nicolas.clientefinalandroid2.R;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 import serializable.Tarjeta;
 
 public class Tab3 extends ActionBarActivity implements View.OnClickListener{
@@ -21,12 +22,11 @@ public class Tab3 extends ActionBarActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab3);
-
         botonTab3LeerQR = (Button) findViewById(R.id.botonTab3LeerQR);
         botonTab3LeerQR.setOnClickListener(this);
 
-        tab4tvDinero = (TextView) findViewById(R.id.tab4tvDinero);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,12 +60,16 @@ public class Tab3 extends ActionBarActivity implements View.OnClickListener{
 
             if (resultCode == RESULT_OK)
             {
-                int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT").trim());
+                int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT"));
 
-                Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
+                Intent intentToLoadingActivity = new Intent(this,LoadingActivityWaitingForTarjetaFromQR.class);
+                intentToLoadingActivity.putExtra("numeroEscaneadoConElQR", numeroEscaneado);
+                startActivity(intentToLoadingActivity);
+
+                /*Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
 
                 this.tab4tvDinero.setText("$" + String.valueOf(ManejadorCliente.getTarjetaActual().getSaldo()));
-                this.botonTab3LeerQR.setText("Nro Tarjeta: " + String.valueOf(ManejadorCliente.getTarjetaActual().getSerial()));
+                this.botonTab3LeerQR.setText("Nro Tarjeta: " + String.valueOf(ManejadorCliente.getTarjetaActual().getSerial()));*/
             }
             else if (resultCode == RESULT_CANCELED)
             {

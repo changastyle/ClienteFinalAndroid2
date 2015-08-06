@@ -7,15 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.Activities.ActivityCargaJugada;
+import com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.LoadingActivityWaitingForTarjetaFromQR;
+import com.example.nicolas.clientefinalandroid2.Activities.Tasks.TaskEnviarJugadas;
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 import serializable.Jugada;
 import serializable.Tarjeta;
 
@@ -23,7 +23,6 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 {
     private Button Tab4But1,Tab4But2,Tab4But3,Tab4But4,Tab4But5,botonEnviarJugadas, botonTarjeta;
     private ArrayList<Button> arrBotones;
-    private ProgressBar barraProgreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,21 +32,30 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
         //CARGA DE BOTONES:
         arrBotones = new ArrayList<Button>();
-
         Tab4But1 = (Button) findViewById(R.id.Tab4But1);arrBotones.add(Tab4But1);
         Tab4But2 = (Button) findViewById(R.id.Tab4But2);arrBotones.add(Tab4But2);
         Tab4But3 = (Button) findViewById(R.id.Tab4But3);arrBotones.add(Tab4But3);
         Tab4But4 = (Button) findViewById(R.id.Tab4But4);arrBotones.add(Tab4But4);
         Tab4But5 = (Button) findViewById(R.id.Tab4But5);arrBotones.add(Tab4But5);
-        barraProgreso = (ProgressBar) findViewById(R.id.progressBarTab1);
-        barraProgreso.setVisibility(View.INVISIBLE);
         botonEnviarJugadas = (Button)findViewById(R.id.botonEnviarJugadas);
         botonTarjeta = (Button)findViewById(R.id.botonTarjeta);
+        setearTextoABotones();
         agregarListeners();
 
 
-        //SETEO EL TEXTO DE LOS BOTONES:
+    }
 
+    @Override
+    protected void onPostResume()
+    {
+        super.onPostResume();
+        habilitarBotones();
+    }
+
+    //METODOS DE BOTONES:
+    private void setearTextoABotones()
+    {
+        //SETEO EL TEXTO DE LOS BOTONES:
         if(ManejadorCliente.getTarjetaActual() != null)
         {
             cargarTarjeta(ManejadorCliente.getTarjetaActual());
@@ -93,11 +101,10 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
             }
             contador++;
         }
-
-
     }
     private void habilitarBotones()
     {
+        //HABILITAR O DESABILITAR BOTONES DE JUEGO:
         if(ManejadorCliente.getTarjetaActual() != null && ! ManejadorCliente.getTarjetaActual().estaVacia())
         {
             for (Button botonActual :arrBotones)
@@ -105,6 +112,11 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
                 botonActual.setEnabled(true);
             }
             botonEnviarJugadas.setEnabled(true);
+
+            this.cargarTarjeta(ManejadorCliente.getTarjetaActual());
+
+            //Toast.makeText(this,"Saldo disponible: $" + ManejadorCliente.getTarjetaActual().getSaldo() ,Toast.LENGTH_SHORT).show();
+
         }
         else
         {
@@ -124,16 +136,14 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         botonEnviarJugadas.setOnClickListener(this);
         botonTarjeta.setOnClickListener(this);
     }
+    //FIN METODOS DE BOTONES.
+
+
+
     @Override
     public void onClick(View v)
     {
         Button botonPresionado = (Button) v;
-
-        if(ManejadorCliente.getTarjetaActual() != null)
-        {
-            this.botonTarjeta.setText(String.valueOf(ManejadorCliente.getTarjetaActual() .getSerial()));
-        }
-
 
         int contador = 0;
         for(Button botonEditarJugada : arrBotones)
@@ -150,26 +160,11 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
         if (botonPresionado.equals(botonEnviarJugadas))
         {
+            TaskEnviarJugadas taskEnviarJugadas = new TaskEnviarJugadas(this);
+            taskEnviarJugadas.execute();
 
-            if(ManejadorCliente.getTarjetaActual() != null )
-            {
-                Toast.makeText(this,"Enviando..",Toast.LENGTH_SHORT).show();
-                barraProgreso.setVisibility(View.VISIBLE);
-
-                //System.out.println("ESTOY A PUNTO DE MANDAR ESTE CONJUNTO AL SERVER:" + ManejadorCliente.getConjuntoJugadasActuales().toString());
-                ManejadorCliente.enviarConjuntoJugadasAlServer();
-
-                System.out.println("RECIBI COMO CONJUNTO DEVUELTO:" + ManejadorCliente.getConjuntoDevuelto().toString());
-                Intent intentAResultado = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
-                intentAResultado.putExtra("tab?",2);
-                startActivity(intentAResultado);
-                this.finish();
-            }
-            else
-            {
-                Toast.makeText(this,"No hay tarjeta seleccionada", Toast.LENGTH_SHORT).show();
-            }
-
+            Intent intentActivityLoadingResults = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.LoadingActivityResultados.class);
+            startActivity(intentActivityLoadingResults);
         }
         else if( botonPresionado.equals(botonTarjeta))
         {
@@ -179,10 +174,16 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
             startActivityForResult(intent, 0);
         }
     }
+    public void listo()
+    {
+        this.finish();
+        Intent intentAResultado = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+        intentAResultado.putExtra("tab?",2);
+        startActivity(intentAResultado);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         return true;
@@ -199,22 +200,14 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
             if (resultCode == RESULT_OK)
             {
-                int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT").trim());
+                int numeroEscaneado = Integer.parseInt(intent.getStringExtra("SCAN_RESULT"));
 
-                Tarjeta tarjetaActual = ManejadorCliente.pedirDatosDeLaTarjeta(numeroEscaneado);
-                ManejadorCliente.setTarjetaActual(tarjetaActual);
-
-                this.cargarTarjeta(tarjetaActual);
-
-                this.habilitarBotones();
-
-                Toast.makeText(this,"Saldo disponible: $" + tarjetaActual.getSaldo() ,Toast.LENGTH_SHORT).show();
+                Intent intentToLoadingActivity = new Intent(this,LoadingActivityWaitingForTarjetaFromQR.class);
+                intentToLoadingActivity.putExtra("numeroEscaneadoConElQR", numeroEscaneado);
+                startActivity(intentToLoadingActivity);
             }
             else if (resultCode == RESULT_CANCELED)
             {
-                //TARJETA FALLO:
-                /*tvStatus.setText("Press a button to start a scan.");
-                tvResult.setText("Scan cancelled.");*/
             }
         }
     }

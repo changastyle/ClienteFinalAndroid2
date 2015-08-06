@@ -1,6 +1,8 @@
  package clienteNicoExpress.cliente;
 
-public class MainCliente
+ import Controller.ManejadorCliente;
+
+ public class MainCliente
 {
     public static void main(String[] args)
     {

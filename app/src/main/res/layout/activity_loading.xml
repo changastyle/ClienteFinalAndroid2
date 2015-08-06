@@ -7,30 +7,27 @@
     tools:context="com.example.nicolas.animaciones1.Transparente"
     android:background="@color/opaque">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/tvTransparente"
-        android:gravity="center"
-        android:textSize="24dp"
-        android:padding="24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="64dp"
-        android:textColor="#cce17620" />
-
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar2"
-        android:layout_alignRight="@+id/tvTransparente"
-        android:layout_alignEnd="@+id/tvTransparente"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewNumeroLeidoLoadingActivity"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="87dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true" />
+        android:gravity="center"
+        android:padding="12dp"
+        android:textSize="24dp"/>
 
 </RelativeLayout>

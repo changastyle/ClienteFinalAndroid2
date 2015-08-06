@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 
 public class Tab4 extends ActionBarActivity implements View.OnClickListener
 {

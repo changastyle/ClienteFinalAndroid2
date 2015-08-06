@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 
 public class Tab2 extends ActionBarActivity implements View.OnClickListener{
 

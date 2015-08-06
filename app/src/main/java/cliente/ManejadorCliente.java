@@ -16,7 +16,7 @@ public class ManejadorCliente  extends Application implements Serializable
 {   
     //private final String direccionIPServer = XMLAPI.XMLHandler.leer("config.xml","direccionIP");
     //private final static String direccionIPServer = "10.0.2.2";
-    private final static String direccionIPServer = "192.168.5.189";
+    private final static String direccionIPServer = "ngrossi.ddns.net";
     //private final static String direccionIPServer = "192.168.1.36";
     //private final int puertoServer = XMLAPI.XMLHandler.leerInt("config.xml","port");
     private final static int puertoServer = 9999;
@@ -150,7 +150,6 @@ public class ManejadorCliente  extends Application implements Serializable
     {
         conjuntoJugadasActuales.agregarJugada(jugada,posicion);
     }
-
 
 
 

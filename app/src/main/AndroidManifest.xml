@@ -66,7 +66,16 @@
         <activity
             android:name=".Activities.Tabs.animaciones.Transparente"
             android:label="@string/title_activity_transparente"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".Activities.Tabs.animaciones.LoadingActivityWaitingForTarjetaFromQR"
+            android:label="@string/title_activity_transparente"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".Activities.Tabs.animaciones.LoadingActivityResultados"
+            android:label="@string/title_activity_loading_activity_resultados" >
         </activity>
     </application>
 

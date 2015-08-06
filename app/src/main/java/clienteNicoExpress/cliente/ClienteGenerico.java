@@ -8,7 +8,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class ClienteGenerico extends Thread
+public class ClienteGenerico extends Thread
 {
     private String direccionIP;
     private int puerto;

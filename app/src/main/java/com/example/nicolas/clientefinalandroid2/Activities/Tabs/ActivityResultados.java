@@ -1,7 +1,6 @@
 package com.example.nicolas.clientefinalandroid2.Activities.Tabs;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,15 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.ThreadProgress;
-import com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.ThreadWaiteador;
+import com.example.nicolas.clientefinalandroid2.Activities.Tasks.TaskEnviarJugadas;
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 import serializable.ConjuntoDevuelto;
 
 public class ActivityResultados extends ActionBarActivity implements View.OnClickListener
@@ -28,7 +25,6 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
     private TextView tvResultados1,tvResultados2,tvResultados3,tvResultados4,tvResultados5;
     private TextView tvResultados6,tvResultados7,tvResultados8,tvResultados9,tvResultados10;
     private Button botonResultadosIZQ, botonResultadosDER;
-    private ProgressBar barraProgreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +49,6 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         botonResultadosIZQ = (Button) findViewById(R.id.botonResultadosIZQ);botonResultadosIZQ.setOnClickListener(this);
         botonResultadosDER = (Button) findViewById(R.id.botonResultadosDER);botonResultadosDER.setOnClickListener(this);
 
-        barraProgreso = (ProgressBar) findViewById(R.id.barraProgresoVentanaResultados);
-        barraProgreso.setVisibility(View.INVISIBLE);
 
         //CARGO LOS DATOS EN LA VISTA:
 
@@ -109,25 +103,26 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
             botonResultadosDER.setEnabled(false);
             botonResultadosIZQ.setEnabled(false);
 
-            //ANIMACIONES DE ESPERA:
-            //ThreadProgress threadProgress = new ThreadProgress(barraProgreso);
-            //threadProgress.start();
-            barraProgreso.setVisibility(View.VISIBLE);
-            //Toast.makeText(this,"Enviando..",Toast.LENGTH_SHORT).show();
 
             if(ManejadorCliente.getConjuntoJugadasActuales().getArrJugadas().length > 0)
             {
-                ManejadorCliente.enviarConjuntoJugadasAlServer();
+                TaskEnviarJugadas taskEnviarJugadas = new TaskEnviarJugadas(this);
+                taskEnviarJugadas.execute();
+
+                Intent intentActivityLoadingResults = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.LoadingActivityResultados.class);
+                startActivity(intentActivityLoadingResults);
             }
-
-
-            intentQueVuelveATabActivity.putExtra("tab?", 2);
-            startActivity(intentQueVuelveATabActivity);
-            this.finish();
         }
 
     }
+    public void listo()
+    {
+        this.finish();
+        Intent intentQueVuelveATabActivity = new Intent(this, com.example.nicolas.clientefinalandroid2.Activities.VentanaContabulaciones.class);
+        intentQueVuelveATabActivity.putExtra("tab?", 2);
+        startActivity(intentQueVuelveATabActivity);
 
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

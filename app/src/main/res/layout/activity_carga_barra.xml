@@ -9,38 +9,10 @@
     style="?android:attr/progressBarStyleHorizontal">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/welcomemsg"
-        android:id="@+id/tvWellcome"
-        android:gravity="center"
-        android:padding="24dp"
-        android:textColor="#ff56b53b"
-        android:textSize="48dp"
-        android:layout_weight="2"
-        android:layout_below="@+id/imagenTrebol"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/progressBar" />
-
-    <ProgressBar
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/tvWellcome"
-        android:layout_alignEnd="@+id/tvWellcome"
-        style="?android:attr/progressBarStyleHorizontal" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/tvSMS"
-        android:layout_above="@+id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="64dp" />
 
@@ -50,20 +22,44 @@
         android:id="@+id/imagenTrebol"
         android:background="@drawable/loteriarn"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Desarrollado por Nicolas Grossi para Tecno Accion S.A"
+        android:text="Desarrollado por Nicolas Grossi"
         android:id="@+id/textView24"
         android:gravity="center"
         android:padding="24dp"
         android:textColor="#ff56b53b"
         android:textSize="20dp"
         android:layout_weight="2"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBarActivityCargaBarra"
+        android:indeterminate="false"
+        android:layout_above="@+id/textView24"
+        android:layout_below="@+id/imagenTrebol"
+        android:layout_alignRight="@+id/imagenTrebol"
+        android:layout_alignEnd="@+id/imagenTrebol"
+        android:layout_alignLeft="@+id/imagenTrebol"
+        android:layout_alignStart="@+id/imagenTrebol"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/logotecnoaccion"
+        android:layout_alignTop="@+id/tvSMS"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/textView24"
+        android:layout_alignEnd="@+id/textView24"/>
 
 </RelativeLayout>

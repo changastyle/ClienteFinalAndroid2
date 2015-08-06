@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 
 public class ErrorParametersActivity extends ActionBarActivity implements View.OnClickListener
 {
@@ -49,7 +49,7 @@ public class ErrorParametersActivity extends ActionBarActivity implements View.O
 
         if(botonPresionado.equals(botonReintentarConexion))
         {
-            finish();
+            this.finish();
             Intent intentQueMeLlevaAlActivityInicial = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.ActivityCargaBarra.class);
             startActivity(intentQueMeLlevaAlActivityInicial);
         }

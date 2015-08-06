@@ -14,7 +14,7 @@ import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 import serializable.Jugada;
 import serializable.ParametrosEncapsuladosParaClientes;
 

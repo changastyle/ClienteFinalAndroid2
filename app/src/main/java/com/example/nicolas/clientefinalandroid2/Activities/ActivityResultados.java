@@ -9,13 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
 
-import clienteNicoExpress.cliente.ManejadorCliente;
+import Controller.ManejadorCliente;
 import serializable.ConjuntoDevuelto;
 
 public class ActivityResultados extends ActionBarActivity implements View.OnClickListener
@@ -27,7 +26,8 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
     private Button botonResultadosIZQ, botonResultadosDER;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_resultados);
 
@@ -49,8 +49,13 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
         botonResultadosIZQ = (Button) findViewById(R.id.botonResultadosIZQ);botonResultadosIZQ.setOnClickListener(this);
         botonResultadosDER = (Button) findViewById(R.id.botonResultadosDER);botonResultadosDER.setOnClickListener(this);
 
-        //CARGO LOS DATOS EN LA VISTA:
+        //VOY A LA ACTIVITY INTERMEDIA:
+        Intent intentALoadingActivityResultados = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.Tabs.animaciones.LoadingActivityResultados.class);
+        startActivity(intentALoadingActivityResultados);
 
+
+
+        //CARGO LOS DATOS EN LA VISTA:
         if(ManejadorCliente.getConjuntoDevuelto() != null)
         {
             ConjuntoDevuelto conjuntoDevuelto = ManejadorCliente.getConjuntoDevuelto();
@@ -63,8 +68,6 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
 
                 MediaPlayer mp = MediaPlayer.create(this, R.raw.fracaso);
                 mp.start();
-
-
             }
             else
             {
@@ -114,7 +117,6 @@ public class ActivityResultados extends ActionBarActivity implements View.OnClic
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }

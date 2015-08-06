@@ -380,16 +380,6 @@
                 android:textSize="20dp"
                 android:textColor="#000000" />
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/barraProgresoVentanaResultados"
-                android:indeterminate="false"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="0.5" />
-
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
@@ -411,7 +401,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:text="Volver"
+                android:text="Limpiar"
                 android:id="@+id/botonResultadosIZQ"
                 android:layout_weight="0.5"
                 android:background="@drawable/gradiente_para_botones"

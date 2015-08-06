@@ -29,4 +29,6 @@
     <string name="telfonoDesarrollador">294154530851</string>
     <string name="telefonoTecno">2944443330</string>
     <string name="title_activity_transparente"></string>
+    <string name="title_activity_loading_activity_resultados">LoadingActivityResultados</string>
+    <string name="msg_loading_activity_resultados">Esperendo Resultados</string>
 </resources>
