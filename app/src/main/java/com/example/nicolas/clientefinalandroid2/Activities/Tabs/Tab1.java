@@ -7,8 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.nicolas.clientefinalandroid2.Activities.ActivityCargaJugada;
 import com.example.nicolas.clientefinalandroid2.R;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 {
     private Button Tab4But1,Tab4But2,Tab4But3,Tab4But4,Tab4But5,botonEnviarJugadas, botonTarjeta;
     private ArrayList<Button> arrBotones;
+    private ProgressBar barraProgreso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +39,8 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
         Tab4But3 = (Button) findViewById(R.id.Tab4But3);arrBotones.add(Tab4But3);
         Tab4But4 = (Button) findViewById(R.id.Tab4But4);arrBotones.add(Tab4But4);
         Tab4But5 = (Button) findViewById(R.id.Tab4But5);arrBotones.add(Tab4But5);
+        barraProgreso = (ProgressBar) findViewById(R.id.progressBarTab1);
+        barraProgreso.setVisibility(View.INVISIBLE);
         botonEnviarJugadas = (Button)findViewById(R.id.botonEnviarJugadas);
         botonTarjeta = (Button)findViewById(R.id.botonTarjeta);
         agregarListeners();
@@ -145,8 +150,12 @@ public class Tab1 extends ActionBarActivity implements View.OnClickListener
 
         if (botonPresionado.equals(botonEnviarJugadas))
         {
+
             if(ManejadorCliente.getTarjetaActual() != null )
             {
+                Toast.makeText(this,"Enviando..",Toast.LENGTH_SHORT).show();
+                barraProgreso.setVisibility(View.VISIBLE);
+
                 //System.out.println("ESTOY A PUNTO DE MANDAR ESTE CONJUNTO AL SERVER:" + ManejadorCliente.getConjuntoJugadasActuales().toString());
                 ManejadorCliente.enviarConjuntoJugadasAlServer();
 

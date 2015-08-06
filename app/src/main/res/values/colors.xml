@@ -17,4 +17,5 @@
     <item name="botonVerdeFinal" type="color">#ff16d200</item>
     <item name="botonNaranjaInicial" type="color">#ffff9148</item>
     <item name="botonNaranjaFinal" type="color">#fffab24b</item>
+    <item name="opaque" type="color">#cc515151</item>
 </resources>

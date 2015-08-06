@@ -28,7 +28,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Activities.Tabs.ActivityCargaJugada"
+            android:name=".Activities.ActivityCargaJugada"
             android:configChanges="orientation"
             android:label="@string/title_activity_tab1"
             android:screenOrientation="portrait" >
@@ -54,7 +54,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Activities.ActivityResultados"
+            android:name=".Activities.Tabs.ActivityResultados"
             android:configChanges="orientation"
             android:label="@string/title_activity_activity_resultados"
             android:screenOrientation="portrait" >
@@ -62,6 +62,11 @@
         <activity
             android:name=".Activities.Tabs.Tab4"
             android:label="@string/title_activity_tab4" >
+        </activity>
+        <activity
+            android:name=".Activities.Tabs.animaciones.Transparente"
+            android:label="@string/title_activity_transparente"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
     </application>
 

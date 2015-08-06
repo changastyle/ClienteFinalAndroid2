@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
+import com.example.nicolas.clientefinalandroid2.Activities.Tabs.ActivityResultados;
 import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab1;
-import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab2;
 import com.example.nicolas.clientefinalandroid2.Activities.Tabs.Tab3;
 import com.example.nicolas.clientefinalandroid2.R;
 

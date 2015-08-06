@@ -49,6 +49,7 @@ public class ErrorParametersActivity extends ActionBarActivity implements View.O
 
         if(botonPresionado.equals(botonReintentarConexion))
         {
+            finish();
             Intent intentQueMeLlevaAlActivityInicial = new Intent(this,com.example.nicolas.clientefinalandroid2.Activities.ActivityCargaBarra.class);
             startActivity(intentQueMeLlevaAlActivityInicial);
         }
@@ -56,11 +57,6 @@ public class ErrorParametersActivity extends ActionBarActivity implements View.O
         {
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + getResources().getString(R.string.telfonoDesarrollador)));
             startActivity(intent);
-            /*
-            String url = "http://ngrossi.ddns.net";
-            Intent intentToWebBrowser = new Intent(Intent.ACTION_VIEW);
-            intentToWebBrowser.setData(Uri.parse(url));
-            startActivity(intentToWebBrowser);*/
         }
 
     }

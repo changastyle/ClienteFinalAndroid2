@@ -15,7 +15,7 @@
     <string name="direccionIP">localhost</string>
     <string name="puerto">9999</string>
     <string name="title_activity_error_parameters">Sin Conexion</string>
-    <string name="title_activity_tab4">Apuesta</string>
+    <string name="title_activity_tab4">Cargar 5 Apuestas:</string>
     <string name="title_activity_activity_resultados">Resultados:</string>
     <string name="tv2Inicial"></string>
     <string name="coEncabezadoActivityResultados">SORTEO</string>
@@ -24,8 +24,9 @@
     <string name="TextoIndicadorTab2">Resultados</string>
     <string name="TextoIndicadorTab3">Saldo</string>
     <string name="TextoIndicadorTab4">Creditos</string>
-    <string name="websiteDeveloper">http://ngrossi.ddns.net</string>
+    <string name="websiteDeveloper">http://ngrossi.ddns.net/clienteNicoExpress/leaveacomment</string>
     <string name="botonTarjetaTab3">Chequear el saldo de la tarjeta</string>
     <string name="telfonoDesarrollador">294154530851</string>
     <string name="telefonoTecno">2944443330</string>
+    <string name="title_activity_transparente"></string>
 </resources>
